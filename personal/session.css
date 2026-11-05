@@ -1055,3 +1055,23 @@ textarea:focus-visible {
     height: 30px;
   }
 }
+
+/* Personal Portal type scale: readable across dashboard, profile, sessions, and tools. */
+body { font-size: 15px; line-height: 1.55; }
+.page-title, .page-heading h1, .welcome-copy h1 { line-height: 1.2; }
+.page-description, .welcome-copy > p, .panel p, .card p, .form-field label, label,
+.nav-link, button, .primary-button, .secondary-button, input, select, textarea { font-size: 14px; }
+.sidebar-label, .eyebrow, .breadcrumb, .status-pill, .badge, .field-hint, small { font-size: 12px; }
+.table-wrap table, table { font-size: 13px; }
+.app-layout small, .app-layout [class*="hint"], .app-layout [class*="meta"],
+.app-layout [class*="status"], .app-layout [class*="caption"] { font-size: 12px; line-height: 1.45; }
+.app-layout .sidebar-label, .app-layout .nav-link, .app-layout .primary-button,
+.app-layout .secondary-button { font-size: 14px; }
+
+.directory-section-heading { margin-top:20px; }
+.directory-provider-card { position:relative; }
+.placement-label { display:inline-flex; align-items:center; width:max-content; padding:5px 9px; border-radius:999px; font-size:10px; font-weight:800; letter-spacing:.04em; text-transform:uppercase; }
+.sponsored-label { color:#75551b; background:#fff4d8; border:1px solid #f0dca8; }
+.organic-label { color:#386b5c; background:#e9f6f0; border:1px solid #cde7db; }
+.sponsored-disclosure { padding:8px 10px; border-left:3px solid #d7b869; color:#6c5b36; background:#fffaf0; font-size:11px; line-height:1.55; }
+.listing-empty { grid-column:1/-1; padding:17px; border:1px dashed #d4e7ed; border-radius:12px; color:#627985; font-size:13px; }

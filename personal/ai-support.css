@@ -1627,9 +1627,191 @@ textarea:focus-visible {
 
 .composer-toolbar > span {
 
+    min-width: 0;
+
+    flex: 1 1 auto;
+
     color: var(--muted);
 
     font-size: 10px;
+
+    line-height: 1.5;
+
+}
+
+.composer-actions {
+
+    display: flex;
+
+    flex: 0 0 auto;
+
+    align-items: center;
+
+    gap: 6px;
+
+}
+
+.composer-tool-button {
+
+    display: grid;
+
+    width: 36px;
+
+    height: 36px;
+
+    flex: 0 0 auto;
+
+    place-items: center;
+
+    border: 1px solid var(--border);
+
+    border-radius: 9px;
+
+    background: var(--white);
+
+    color: var(--blue);
+
+    cursor: pointer;
+
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+
+}
+
+.composer-tool-button:hover,
+
+.composer-tool-button[aria-pressed="true"] {
+
+    border-color: var(--teal);
+
+    background: var(--card);
+
+    color: var(--navy);
+
+}
+
+.composer-tool-button svg {
+
+    width: 18px;
+
+    height: 18px;
+
+    fill: none;
+
+    stroke: currentColor;
+
+    stroke-width: 1.7;
+
+    stroke-linecap: round;
+
+    stroke-linejoin: round;
+
+}
+
+.attachment-preview {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin: 5px 0 10px;
+
+    padding: 7px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 9px;
+
+    background: #fbfdfe;
+
+}
+
+.attachment-preview img {
+
+    width: 48px;
+
+    height: 48px;
+
+    flex: 0 0 auto;
+
+    border-radius: 6px;
+
+    object-fit: cover;
+
+}
+
+.attachment-preview span {
+
+    min-width: 0;
+
+    flex: 1;
+
+    overflow: hidden;
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+}
+
+.attachment-preview button {
+
+    padding: 5px 7px;
+
+    border: 0;
+
+    border-radius: 6px;
+
+    background: transparent;
+
+    color: var(--blue);
+
+    font-size: 10px;
+
+    cursor: pointer;
+
+}
+
+.attachment-preview button:hover {
+
+    background: var(--card);
+
+}
+
+.message-attachment {
+
+    display: grid;
+
+    gap: 5px;
+
+    margin-top: 8px;
+
+}
+
+.message-attachment img {
+
+    display: block;
+
+    max-width: min(240px, 100%);
+
+    max-height: 180px;
+
+    border-radius: 8px;
+
+    object-fit: contain;
+
+}
+
+.message-attachment small {
+
+    color: var(--muted);
+
+    font-size: 9px;
 
     line-height: 1.5;
 
@@ -2663,7 +2845,31 @@ textarea:focus-visible {
 
     .composer-toolbar > span {
 
-        max-width: 65%;
+        max-width: none;
+
+    }
+
+    .composer-tool-button {
+
+        width: 31px;
+
+        height: 31px;
+
+    }
+
+    .composer-actions {
+
+        gap: 4px;
+
+    }
+
+    .send-button {
+
+        min-height: 32px;
+
+        gap: 6px;
+
+        padding: 0 9px;
 
     }
 
@@ -2692,3 +2898,15 @@ textarea:focus-visible {
     }
 
 }
+
+/* Personal Portal type scale: readable across dashboard, profile, sessions, and tools. */
+body { font-size: 15px; line-height: 1.55; }
+.page-title, .page-heading h1, .welcome-copy h1 { line-height: 1.2; }
+.page-description, .welcome-copy > p, .panel p, .card p, .form-field label, label,
+.nav-link, button, .primary-button, .secondary-button, input, select, textarea { font-size: 14px; }
+.sidebar-label, .eyebrow, .breadcrumb, .status-pill, .badge, .field-hint, small { font-size: 12px; }
+.table-wrap table, table { font-size: 13px; }
+.app-layout small, .app-layout [class*="hint"], .app-layout [class*="meta"],
+.app-layout [class*="status"], .app-layout [class*="caption"] { font-size: 12px; line-height: 1.45; }
+.app-layout .sidebar-label, .app-layout .nav-link, .app-layout .primary-button,
+.app-layout .secondary-button { font-size: 14px; }

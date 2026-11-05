@@ -1259,3 +1259,26 @@ a.glance-item:hover {
         transition-duration: .01ms !important;
     }
 }
+
+/* Personal Portal type scale: readable across dashboard, profile, sessions, and tools. */
+body { font-size: 15px; line-height: 1.55; }
+.page-title, .page-heading h1, .welcome-copy h1 { line-height: 1.2; }
+.page-description, .welcome-copy > p, .panel p, .card p, .form-field label, label,
+.nav-link, button, .primary-button, .secondary-button, input, select, textarea { font-size: 14px; }
+.sidebar-label, .eyebrow, .breadcrumb, .status-pill, .badge, .field-hint, small { font-size: 12px; }
+.table-wrap table, table { font-size: 13px; }
+.app-layout small, .app-layout [class*="hint"], .app-layout [class*="meta"],
+.app-layout [class*="status"], .app-layout [class*="caption"] { font-size: 12px; line-height: 1.45; }
+.app-layout .sidebar-label, .app-layout .nav-link, .app-layout .primary-button,
+.app-layout .secondary-button { font-size: 14px; }
+
+.subscription-card { display:flex; align-items:center; justify-content:space-between; gap:18px; padding:18px 22px; margin:0 0 22px; border:1px solid #d7eaf0; border-radius:16px; background:linear-gradient(120deg,#f4fbff,#f2faf7); }
+.subscription-card h2 { margin:5px 0; color:var(--navy,#164b67); font-size:19px; }
+.subscription-card p { margin:0; color:var(--muted,#647985); font-size:13px; line-height:1.6; }
+.subscription-card[hidden] { display:none; }
+.subscription-link { flex:0 0 auto; padding:10px 15px; border:1px solid #b8dce7; border-radius:999px; color:var(--navy,#164b67); background:#fff; font-size:13px; font-weight:700; text-decoration:none; }
+.premium-preview-card { margin:0 0 22px; padding:19px 22px; border:1px solid #dcebf0; border-radius:16px; background:#fff; }
+.premium-preview-card h2 { margin:5px 0; color:var(--navy,#164b67); font-size:18px; }
+.premium-preview-card p { color:var(--muted,#647985); font-size:13px; line-height:1.65; }
+.premium-preview-card a { color:var(--blue,#347f9b); font-size:13px; font-weight:700; }
+@media(max-width:650px) { .subscription-card { align-items:flex-start; flex-direction:column; padding:16px; } }

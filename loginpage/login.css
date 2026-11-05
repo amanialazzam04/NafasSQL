@@ -245,6 +245,7 @@ h1 span {
 .heading-brand {
     display: flex;
     align-items: center;
+    flex-direction: row-reverse;
     gap: 16px;
 }
 
@@ -274,15 +275,15 @@ h1 span {
 h2 {
     margin: 7px 0 6px;
     color: var(--navy);
-    font-size: clamp(22px, 2.2vw, 28px);
+    font-size: clamp(26px, 2.4vw, 32px);
     letter-spacing: -0.8px;
 }
 
 .form-heading p {
     margin: 0;
     color: var(--muted);
-    font-size: 11px;
-    line-height: 1.7;
+    font-size: 14px;
+    line-height: 1.65;
 }
 
 /* Account type label */
@@ -291,7 +292,7 @@ h2 {
     display: block;
     margin: 0 0 10px;
     color: #214e6b;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
 }
 
@@ -340,7 +341,7 @@ h2 {
 }
 
 .account-name {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 700;
 }
 
@@ -367,7 +368,7 @@ form > label:not(.account-option),
     display: block;
     margin: 14px 0 7px;
     color: #214e6b;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
 }
 
@@ -377,14 +378,14 @@ form > label:not(.account-option),
 
 .input-wrap input {
     width: 100%;
-    height: 46px;
+    height: 50px;
     padding: 0 52px 0 43px;
     outline: none;
     border: 1px solid var(--line);
     border-radius: 11px;
     color: var(--navy);
     background: #fbfeff;
-    font-size: 12px;
+    font-size: 14px;
     transition: border-color 0.2s, box-shadow 0.2s;
 }
 
@@ -426,7 +427,7 @@ form > label:not(.account-option),
 
 .password-label a {
     margin-bottom: 7px;
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 600;
 }
 
@@ -439,7 +440,7 @@ form > label:not(.account-option),
     border: none;
     color: var(--blue);
     background: transparent;
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 700;
     cursor: pointer;
 }
@@ -457,7 +458,7 @@ form > label:not(.account-option),
     align-items: center;
     gap: 7px;
     color: var(--muted);
-    font-size: 11px;
+    font-size: 13px;
     cursor: pointer;
 }
 
@@ -482,7 +483,7 @@ form > label:not(.account-option),
     color: white;
     background: linear-gradient(100deg, var(--navy), var(--blue));
     box-shadow: 0 9px 20px #087fa82a;
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 700;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
@@ -509,7 +510,7 @@ form > label:not(.account-option),
     margin: 12px 0 0;
     padding: 10px 12px;
     border-radius: 9px;
-    font-size: 11px;
+    font-size: 13px;
     line-height: 1.55;
 }
 
@@ -554,39 +555,44 @@ form > label:not(.account-option),
 .demo-note strong {
     display: block;
     color: var(--navy);
-    font-size: 10px;
+    font-size: 13px;
 }
 
 .demo-note p {
     margin: 4px 0 0;
     color: var(--muted);
-    font-size: 10px;
+    font-size: 12px;
     line-height: 1.6;
 }
 
-.demo-accounts {
+.demo-account-buttons {
     display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 5px;
-    margin: 7px 0 0;
-    padding: 0;
-    list-style: none;
+    margin-top: 7px;
 }
 
-.demo-accounts li {
-    display: grid;
-    gap: 1px;
-    color: var(--muted);
-    font-size: 9px;
-    line-height: 1.5;
-}
-
-.demo-accounts strong {
+.demo-account-buttons button {
+    min-width: 0;
+    padding: 6px 8px;
+    border: 1px solid #d9f0f7;
+    border-radius: 7px;
     color: var(--navy);
-    font-size: 9px;
+    background: #fff;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
 }
 
-.demo-accounts span {
-    overflow-wrap: anywhere;
+.demo-account-buttons button:hover {
+    border-color: var(--teal);
+    background: #f3fbfe;
+}
+
+.demo-account-buttons button:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 2px;
 }
 
 /* Signup */
@@ -595,7 +601,7 @@ form > label:not(.account-option),
     margin-top: 17px;
     color: var(--muted);
     text-align: center;
-    font-size: 11px;
+    font-size: 13px;
 }
 
 .signup-prompt a {
@@ -611,7 +617,7 @@ form > label:not(.account-option),
     border-top: 1px solid #edf4f7;
     color: #7892a2;
     text-align: center;
-    font-size: 10px;
+    font-size: 12px;
 }
 
 .privacy-note span {
@@ -695,7 +701,7 @@ form > label:not(.account-option),
     }
 
     .form-heading p {
-        font-size: 10px;
+        font-size: 13px;
     }
 
     .account-types {
@@ -712,10 +718,10 @@ form > label:not(.account-option),
     }
 
     .account-name {
-        font-size: 10px;
+        font-size: 11px;
     }
 
     .page-footer {
-        font-size: 9px;
+        font-size: 11px;
     }
 }

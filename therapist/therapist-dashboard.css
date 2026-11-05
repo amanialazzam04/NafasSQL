@@ -23,6 +23,11 @@
 .th-shortcut>span { color: var(--teal); font-size: 22px; }
 .th-shortcut strong { color: var(--navy); font: 700 12px "Manrope", sans-serif; }
 .th-shortcut small { color: var(--muted); font-size: 10px; }
+.promotion-panel { margin: 17px 0; }
+.promotion-copy { max-width: 760px; color: var(--muted); font-size: 12px; line-height: 1.65; }
+.promotion-consent { display:flex; align-items:flex-start; gap:9px; max-width:760px; margin:12px 0; color:var(--navy); font-size:12px; line-height:1.6; }
+.promotion-consent input { flex:0 0 auto; margin-top:3px; accent-color:var(--teal); }
+.promotion-panel .secondary-button { min-height:38px; padding:9px 13px; border:1px solid var(--border); border-radius:999px; background:#fff; color:var(--navy); cursor:pointer; font-weight:700; }
 
 @media (max-width: 960px) { .th-stat-grid, .th-shortcut-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 

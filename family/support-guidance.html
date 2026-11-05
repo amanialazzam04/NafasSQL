@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -47,12 +47,6 @@
 
       <div class="portal-container"><section class="portal-view" id="guidance" data-title="Support & Guidance" aria-labelledby="guidance-title">
           <div class="page-heading"><div><p class="eyebrow">LEARN &amp; SUPPORT</p><h1 id="guidance-title">Support &amp; Guidance</h1><p class="page-description">Practical ideas for offering care while respecting your loved one's choices and boundaries.</p></div></div>
-          <div class="guidance-grid">
-            <article class="support-card"><span class="support-icon">♡</span><h2>Listen with care</h2><p>Give them time to speak. Ask open questions, listen without judgment, and let them set the pace.</p><p class="example-phrase">“Would you like me to listen, or think through options with you?”</p></article>
-            <article class="support-card"><span class="support-icon">✧</span><h2>Offer practical help</h2><p>Ask what would make today a little easier. Small, specific offers can be easier to accept than broad promises.</p><p class="example-phrase">“Would it help if I went with you to look for support?”</p></article>
-            <article class="support-card"><span class="support-icon">○</span><h2>Respect privacy and choice</h2><p>Let your loved one decide what to share and with whom. Do not ask for access to their private journal or AI conversations.</p><p class="example-phrase">“You can share only what feels comfortable.”</p></article>
-            <article class="support-card"><span class="support-icon">☼</span><h2>Look after yourself</h2><p>Supporting someone can affect you too. Keep your own support network and make room for rest and boundaries.</p><p class="example-phrase">You can care deeply and still take time for yourself.</p></article>
-          </div>
           <section class="panel family-chat-panel" aria-labelledby="family-chat-title">
             <div class="panel-heading"><div><p class="eyebrow">FAMILY GUIDANCE · DEMO MODE</p><h2 id="family-chat-title">Ask for supportive ideas</h2></div><button type="button" class="secondary-button chat-reset-button" id="family-chat-reset">Start a new conversation</button></div>
             <p class="family-chat-intro">Explore general ideas for supporting someone you care about. This Family guidance chat is separate from the Personal User's private AI Support.</p>
@@ -65,8 +59,8 @@
             <div class="family-chat-transcript" id="family-chat-transcript" role="log" aria-live="polite" aria-relevant="additions text">
               <div class="family-chat-message assistant-message"><span class="chat-speaker">Nafas Family Guidance · Demo</span><p>Hi. I can offer general educational ideas for supporting a loved one. What would you like to explore?</p></div>
             </div>
-            <div class="family-chat-loading" id="family-chat-loading" role="status" aria-live="polite"><span class="typing-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>Preparing a guidance response…</span></div>
-            <p class="family-chat-error" id="family-chat-error" role="alert">That response could not be prepared. Please try again.</p>
+            <div class="family-chat-loading" id="family-chat-loading" role="status" aria-live="polite" hidden><span class="typing-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>Preparing a guidance response…</span></div>
+            <p class="family-chat-error" id="family-chat-error" role="alert" hidden>That response could not be prepared. Please try again.</p>
             <form class="family-chat-form" id="family-chat-form">
               <label class="field-label" for="family-chat-input">Your question</label>
               <div class="family-chat-compose"><textarea id="family-chat-input" rows="2" maxlength="1000" placeholder="Ask for a general supportive idea…" required></textarea><button type="submit" class="primary-button" id="family-chat-send">Send <span aria-hidden="true">→</span></button></div>
@@ -74,6 +68,12 @@
             </form>
             <p class="chat-safety-note">This assistant does not diagnose or provide therapy. It cannot monitor safety or contact anyone. If someone may be in immediate danger, contact your local emergency services or go to the nearest emergency department.</p>
           </section>
+          <div class="guidance-grid">
+            <article class="support-card"><span class="support-icon">♡</span><h2>Listen with care</h2><p>Give them time to speak. Ask open questions, listen without judgment, and let them set the pace.</p><p class="example-phrase">“Would you like me to listen, or think through options with you?”</p></article>
+            <article class="support-card"><span class="support-icon">✧</span><h2>Offer practical help</h2><p>Ask what would make today a little easier. Small, specific offers can be easier to accept than broad promises.</p><p class="example-phrase">“Would it help if I went with you to look for support?”</p></article>
+            <article class="support-card"><span class="support-icon">○</span><h2>Respect privacy and choice</h2><p>Let your loved one decide what to share and with whom. Do not ask for access to their private journal or AI conversations.</p><p class="example-phrase">“You can share only what feels comfortable.”</p></article>
+            <article class="support-card"><span class="support-icon">☼</span><h2>Look after yourself</h2><p>Supporting someone can affect you too. Keep your own support network and make room for rest and boundaries.</p><p class="example-phrase">You can care deeply and still take time for yourself.</p></article>
+          </div>
           <section class="panel guidance-library"><div class="panel-heading"><div><p class="eyebrow">EDUCATIONAL RESOURCES</p><h2>Explore practical guidance</h2></div></div>
             <div class="filter-row" role="group" aria-label="Filter guidance resources">
               <button type="button" class="filter-button active" data-resource-filter="all" aria-pressed="true">All topics</button>
@@ -95,15 +95,12 @@
             <p class="prompt-response" id="guidance-prompt-response" role="status" aria-live="polite"></p>
             <p class="field-hint">Suggestions are predefined educational text. No AI service is connected.</p>
           </section>
-          <section class="panel resource-panel"><div class="panel-heading"><div><p class="eyebrow">NAFAS RESOURCES</p><h2>Explore support together</h2></div></div><div class="resource-list">
-            <a class="resource-row" href="../personal/wellness.html"><span class="resource-icon">☼</span><span><strong>Daily Wellness</strong><small>Personal mood check-ins and self-care tools</small></span><span class="resource-arrow">→</span></a>
-            <a class="resource-row" href="../personal/session.html"><span class="resource-icon">✧</span><span><strong>Sessions &amp; Support</strong><small>Review sample therapist profiles and session options</small></span><span class="resource-arrow">→</span></a>
-            <a class="resource-row" href="../homepage/home.html#about"><span class="resource-icon">○</span><span><strong>About Nafas</strong><small>Learn about the Nafas wellbeing project</small></span><span class="resource-arrow">→</span></a>
-          </div></section>
         </section></div>
     </main>
   </div>
+<script src="family-access.js" defer></script>
 <script src="support-guidance.js" defer></script>
+
 <script src="family.js" defer></script>
 </body>
 </html>

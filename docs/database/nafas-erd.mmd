@@ -1,0 +1,210 @@
+%% NafasDB ERD based on database-data.js.
+%% SSMS review reported by project owner: 18 tables, 110 columns; PK/UQ/FKs/indexes/CHECKs reviewed; inspected FKs enabled and trusted.
+%% Exact catalog export was not supplied for object-by-object reconciliation; application authorization is outside this diagram.
+erDiagram
+  Roles ||--o{ Users : "has role"
+  Users ||--o{ TherapistApplications : "submitted by"
+  TherapistApplications ||--o{ TherapistApplicationStatusHistory : "records status for"
+  Users o|--o{ TherapistApplicationStatusHistory : "reviewed by (optional)"
+  TherapistApplications ||--o{ TherapistCredentials : "submitted with"
+  Users ||--o{ MoodEntries : "owned by"
+  Users ||--o{ JournalEntries : "owned by (private)"
+  Users ||--o{ ActivityEntries : "owned by"
+  Users ||--o{ FamilyConnections : "requested by family member"
+  Users ||--o{ FamilyConnections : "requested for personal user"
+  FamilyConnections ||--o{ FamilySharingConsentHistory : "consent for connection"
+  SharingCategories ||--o{ FamilySharingConsentHistory : "consent for category"
+  Users ||--o{ FamilySharingConsentHistory : "changed by personal user"
+  Users ||--o{ ConsultationRequests : "requested by"
+  Users ||--o{ ConsultationRequests : "requested with therapist"
+  Users ||--o{ ChatSessions : "owned by Personal User"
+  ChatSessions ||--o{ ChatMessages : "contains messages"
+  Users ||--o{ SupportGroups : "led by Therapist"
+  SupportGroups ||--o{ SupportGroupMemberships : "membership in group"
+  Users ||--o{ SupportGroupMemberships : "Personal User member"
+  SupportGroups ||--o{ SupportGroupMessages : "posted in group"
+  SupportGroupMemberships o|--o{ SupportGroupMessages : "sent by member (optional)"
+  Users o|--o{ SupportGroupMessages : "sent by Therapist Leader (optional)"
+  ConsultationRequests ||--o{ TherapistSessions : "scheduled from request"
+  Roles {
+    int RoleID PK
+    nvarchar RoleName UK
+  }
+  %% Roles UNIQUE (RoleName)
+  %% Roles CHECK RoleName IN (N'Personal User', N'Family Member', N'Therapist', N'Admin')
+  Users {
+    int UserID PK
+    int RoleID FK
+    nvarchar Email UK
+    nvarchar PasswordHash
+    nvarchar DisplayName
+    nvarchar AccountStatus
+    datetime2 CreatedAt
+    datetime2 UpdatedAt
+  }
+  %% Users UNIQUE (Email)
+  %% Users CHECK AccountStatus IN (N'Active', N'Suspended', N'Closed')
+  TherapistApplications {
+    int ApplicationID PK
+    int TherapistUserID FK
+    int ApplicationNumber
+    nvarchar ProfessionalTitle
+    nvarchar Specialization
+    nvarchar ExperienceSummary
+    datetime2 SubmittedAt
+  }
+  %% TherapistApplications UNIQUE (TherapistUserID, ApplicationNumber)
+  %% TherapistApplications CHECK ApplicationNumber > 0
+  TherapistApplicationStatusHistory {
+    int ApplicationStatusHistoryID PK
+    int ApplicationID FK
+    nvarchar ApplicationStatus
+    datetime2 ChangedAt
+    int ChangedByAdminUserID FK
+    nvarchar ReviewNotes
+  }
+  %% TherapistApplicationStatusHistory CHECK ApplicationStatus IN (N'Pending', N'Approved', N'Rejected')
+  %% TherapistApplicationStatusHistory CHECK (ApplicationStatus = N'Pending' AND ChangedByAdminUserID IS NULL) OR (ApplicationStatus IN (N'Approved', N'Rejected') AND ChangedByAdminUserID IS NOT NULL)
+  TherapistCredentials {
+    int CredentialID PK
+    int ApplicationID FK
+    nvarchar CredentialType
+    nvarchar CredentialName
+    nvarchar IssuingOrganization
+    nvarchar CredentialReference
+    date IssueDate
+    nvarchar FileReference
+    nvarchar FileName
+    nvarchar ContentType
+    bigint FileSizeBytes
+    datetime2 UploadedAt
+  }
+  %% TherapistCredentials CHECK CredentialType IN (N'Qualification', N'Certificate')
+  %% TherapistCredentials CHECK FileSizeBytes IS NULL OR FileSizeBytes >= 0
+  MoodEntries {
+    int MoodEntryID PK
+    int UserID FK
+    nvarchar MoodValue
+    nvarchar Reflection
+    datetime2 RecordedAt
+  }
+  %% MoodEntries CHECK MoodValue IN (N'Great', N'Good', N'Okay', N'Low', N'Anxious')
+  JournalEntries {
+    int JournalEntryID PK
+    int UserID FK
+    date EntryDate
+    nvarchar Title
+    nvarchar EntryText
+    datetime2 CreatedAt
+    datetime2 UpdatedAt
+  }
+  ActivityEntries {
+    int ActivityEntryID PK
+    int UserID FK
+    nvarchar ActivityName
+    date ActivityDate
+    bit IsCompleted
+    datetime2 CompletedAt
+    datetime2 RecordedAt
+  }
+  FamilyConnections {
+    int ConnectionID PK
+    int FamilyUserID FK
+    int PersonalUserID FK
+    nvarchar ConnectionStatus
+    datetime2 RequestedAt
+    datetime2 RespondedAt
+  }
+  %% FamilyConnections CHECK ConnectionStatus IN (N'Pending', N'Accepted', N'Rejected', N'Cancelled', N'Revoked')
+  %% FamilyConnections CHECK FamilyUserID <> PersonalUserID
+  SharingCategories {
+    int SharingCategoryID PK
+    nvarchar CategoryName UK
+  }
+  %% SharingCategories UNIQUE (CategoryName)
+  %% SharingCategories CHECK CategoryName IN (N'Mood Summary', N'Activity Summary')
+  FamilySharingConsentHistory {
+    int ConsentEventID PK
+    int ConnectionID FK
+    int SharingCategoryID FK
+    nvarchar ConsentAction
+    datetime2 ChangedAt
+    int ChangedByUserID FK
+  }
+  %% FamilySharingConsentHistory CHECK ConsentAction IN (N'Enabled', N'Revoked')
+  ConsultationRequests {
+    int ConsultationRequestID PK
+    int PersonalUserID FK
+    int TherapistUserID FK
+    nvarchar Topic
+    nvarchar Message
+    datetime2 PreferredDateTime
+    nvarchar RequestStatus
+    datetime2 CreatedAt
+    datetime2 UpdatedAt
+  }
+  %% ConsultationRequests CHECK RequestStatus IN (N'Pending', N'Accepted', N'Declined', N'Withdrawn')
+  %% ConsultationRequests CHECK PersonalUserID <> TherapistUserID
+  ChatSessions {
+    int ChatSessionID PK
+    int PersonalUserID FK
+    datetime2 CreatedAt
+    datetime2 EndedAt
+  }
+  %% ChatSessions CHECK EndedAt IS NULL OR EndedAt >= CreatedAt
+  %% ChatSessions INDEX IX_ChatSessions_PersonalUser_CreatedAt (PersonalUserID, CreatedAt)
+  ChatMessages {
+    int ChatMessageID PK
+    int ChatSessionID FK
+    nvarchar SenderType
+    nvarchar MessageContent
+    datetime2 SentAt
+  }
+  %% ChatMessages CHECK SenderType IN (N'User', N'AI')
+  %% ChatMessages INDEX IX_ChatMessages_Session_SentAt (ChatSessionID, SentAt)
+  SupportGroups {
+    int SupportGroupID PK
+    nvarchar GroupName
+    nvarchar Description
+    int LeaderTherapistID FK
+    nvarchar GroupStatus
+    datetime2 CreatedAt
+  }
+  %% SupportGroups CHECK GroupStatus IN (N'Active', N'Closed')
+  %% SupportGroups INDEX IX_SupportGroups_Status (GroupStatus)
+  %% SupportGroups INDEX IX_SupportGroups_Leader (LeaderTherapistID)
+  SupportGroupMemberships {
+    int MembershipID PK
+    int SupportGroupID FK
+    int PersonalUserID FK
+    datetime2 MembershipStartAt
+    datetime2 MembershipEndAt
+  }
+  %% SupportGroupMemberships CHECK MembershipEndAt IS NULL OR MembershipEndAt > MembershipStartAt
+  %% SupportGroupMemberships UNIQUE INDEX UX_SupportGroupMemberships_Active_Group_User (SupportGroupID, PersonalUserID) WHERE MembershipEndAt IS NULL
+  %% SupportGroupMemberships INDEX IX_SupportGroupMemberships_Group_User_Period (SupportGroupID, PersonalUserID, MembershipStartAt, MembershipEndAt)
+  SupportGroupMessages {
+    int SupportGroupMessageID PK
+    int SupportGroupID FK
+    int MembershipID FK
+    int TherapistLeaderUserID FK
+    nvarchar MessageContent
+    datetime2 SentAt
+  }
+  %% SupportGroupMessages CHECK (MembershipID IS NOT NULL AND TherapistLeaderUserID IS NULL) OR (MembershipID IS NULL AND TherapistLeaderUserID IS NOT NULL)
+  %% SupportGroupMessages INDEX IX_SupportGroupMessages_Group_SentAt (SupportGroupID, SentAt)
+  %% SupportGroupMessages INDEX IX_SupportGroupMessages_Membership_SentAt (MembershipID, SentAt)
+  %% SupportGroupMessages INDEX IX_SupportGroupMessages_Leader_SentAt (TherapistLeaderUserID, SentAt)
+  TherapistSessions {
+    int TherapistSessionID PK
+    int ConsultationRequestID FK
+    datetimeoffset SessionStartAt
+    datetimeoffset SessionEndAt
+    nvarchar SessionStatus
+    datetime2 CreatedAt
+    datetime2 UpdatedAt
+  }
+  %% TherapistSessions CHECK SessionEndAt > SessionStartAt
+  %% TherapistSessions CHECK SessionStatus IN (N'Scheduled', N'Completed', N'Cancelled')
+  %% TherapistSessions INDEX IX_TherapistSessions_Request_Start (ConsultationRequestID, SessionStartAt)
+  %% TherapistSessions INDEX IX_TherapistSessions_Start_Status (SessionStartAt, SessionStatus)

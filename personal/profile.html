@@ -1,4 +1,4 @@
-
+﻿
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,35 +6,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Settings & Privacy | Nafas</title>
   <link rel="stylesheet" href="profile.css">
+  <link rel="stylesheet" href="personal-ui.css">
 </head>
-<body>
+<body class="personal-portal personal-portal--horizontal">
 
   <aside class="sidebar">
     <a href="dashbord.html" class="brand" aria-label="Nafas home">
       <img src="../homepage/assets/nafas-logo-transparent.png" alt="Nafas" class="logo-image">
     </a>
 
-    <p class="sidebar-heading">MENU</p>
+    <p class="sidebar-label">PERSONAL SPACE</p>
 
-    <nav class="navigation">
-      <a href="dashbord.html" class="nav-link">
-        <span class="nav-icon">⌂</span> Dashboard
-      </a>
-      <a href="ai-support.html" class="nav-link">
-        <span class="nav-icon">◉</span> AI Support
-      </a>
-      <a href="wellness.html" class="nav-link">
-        <span class="nav-icon">◇</span> Daily Wellness
-      </a>
-      <a href="session.html" class="nav-link">
-        <span class="nav-icon">▤</span> Sessions & Support
-      </a>
-      <a href="profile.html" class="nav-link">
-        <span class="nav-icon">○</span> My Profile
-      </a>
-      <a href="profile.html#account-permissions" class="nav-link active">
-        <span class="nav-icon">⚙</span> Settings
-      </a>
+        <nav class="sidebar-nav navigation" aria-label="Main navigation">
+      <a href="dashbord.html" class="nav-link"><span class="nav-icon">&#8962;</span> Dashboard</a>
+      <a href="ai-support.html" class="nav-link"><span class="nav-icon">&#10047;</span> AI Support <span class="nav-badge">AI</span></a>
+      <a href="wellness.html" class="nav-link"><span class="nav-icon">&#9788;</span> Daily Wellness</a>
+      <a href="journal.html" class="nav-link"><span class="nav-icon">&#9998;</span> Daily Journal</a>
+      <a href="session.html" class="nav-link"><span class="nav-icon">&#9673;</span> Sessions &amp; Support</a>
+      <a href="profile.html" class="nav-link active" aria-current="page"><span class="nav-icon">&#9711;</span> My Profile</a>
+      <a href="profile.html#account-permissions" class="nav-link"><span class="nav-icon">&#9881;</span> Settings</a>
     </nav>
 
     <div class="sidebar-help">
@@ -82,6 +72,9 @@
         <a href="#privacy" class="settings-nav-link">
           Privacy Settings
         </a>
+        <a href="#family-connections" class="settings-nav-link">
+          Family Connections &amp; Sharing
+        </a>
         <a href="#data-preferences" class="settings-nav-link">
           Data Preferences
         </a>
@@ -94,6 +87,17 @@
       </aside>
 
       <div class="settings-content">
+
+        <section class="settings-card subscription-card" id="subscription-profile-summary" aria-labelledby="subscription-title">
+          <div class="section-heading"><div><p class="eyebrow">SIMULATED PLAN</p><h2 id="subscription-title" data-subscription-status>Free plan</h2><p data-subscription-description>Subscription pricing is TBD. No payment processing is connected.</p></div></div>
+          <div class="subscription-tier-grid">
+            <article><h3>Free · $0</h3><ul><li>Basic mood check-ins</li><li>All personal journal entries</li><li>Essential wellness resources and safety information</li></ul></article>
+            <article><h3>Premium · pricing TBD</h3><ul><li>Extended mood history and trend summaries</li><li>Structured guided wellness programs</li><li>Additional personalization tools</li></ul><p class="field-hint">Premium additions are prototype previews; advanced insights and programs are not currently computed or delivered.</p></article>
+          </div>
+          <p class="info-note">Prototype only: this page does not collect card details, process payments, or start automatic billing. Trial expiration returns Premium access to Free; journal entries and essential wellness features stay available.</p>
+          <div class="subscription-controls"><span class="subscription-price">Premium pricing: TBD</span><button type="button" id="subscription-action" class="primary-button">Simulate Premium access · no payment</button></div>
+          <p id="subscription-feedback" class="feedback-message" role="status" aria-live="polite"></p>
+        </section>
 
         <!-- ACCOUNT PERMISSIONS -->
         <section class="settings-card" id="account-permissions">
@@ -200,9 +204,21 @@
           </div>
 
           <p class="info-note">
-            These controls are demonstrations only. They do not change
-            server permissions or share information at this stage.
+            These controls are local preference examples. Use Family Connections &amp; Sharing below for the separate, explicit consent flow.
           </p>
+        </section>
+
+        <!-- FAMILY CONNECTIONS -->
+        <section class="settings-card" id="family-connections" aria-labelledby="family-connections-title">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">OPTIONAL &amp; CONSENT BASED</p>
+              <h2 id="family-connections-title">Family Connections &amp; Sharing</h2>
+              <p class="section-description">Review requests, choose what to share, or revoke access at any time. Family members never receive private journal entries or AI conversations.</p>
+            </div>
+          </div>
+          <div id="family-connection-manager" aria-live="polite"></div>
+          <p class="info-note">Prototype only. Connection and permission records are kept in this browser's local storage, not securely verified or stored on a server.</p>
         </section>
 
         <!-- DATA PREFERENCES -->
@@ -372,6 +388,10 @@
     </footer>
 
   </main>
+<script src="personal-access.js" defer></script>
+<script src="personal-sharing.js" defer></script>
+<script src="personal-connections.js" defer></script>
+<script src="subscription.js" defer></script>
 <script src="profile.js" defer></script>
 </body>
 </html>

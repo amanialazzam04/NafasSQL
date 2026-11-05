@@ -1,3 +1,7 @@
 @import url("../family/family.css");
 @import url("admin.css");
+.promotion-admin-panel { margin-top:18px; }
+.promotion-admin-row { padding:15px; margin:12px 0; border:1px solid var(--border); border-radius:12px; background:#fbfdfe; }
+.promotion-admin-row h3 { margin:0 0 7px; color:var(--navy); }
+.promotion-admin-row p { margin:5px 0; color:var(--muted); font-size:12px; line-height:1.6; }
 

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Nafas Mental Wellness Platform Database Design V2 SQL Server documentation.">
+  <title>NafasDB | Database Documentation</title>
+  <link rel="stylesheet" href="database.css">
+  <script src="database-data.js" defer></script>
+  <script src="database.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Nafas database documentation home">
+      <span class="brand-mark" aria-hidden="true">n</span>
+      <span><strong>Nafas</strong><small>Database guide</small></span>
+    </a>
+    <div class="header-meta"><span class="status-pill"><span class="status-dot"></span> Design V2</span><span class="db-name">SQL Server · NafasDB</span></div>
+  </header>
+
+  <main id="top" class="page-shell">
+    <section class="intro-card" aria-labelledby="page-title">
+      <div class="intro-copy">
+        <p class="eyebrow">DATA MODEL REFERENCE</p>
+        <h1 id="page-title">A clear view of Nafas data.</h1>
+        <p class="intro-text">Explore the Nafas SQL Server model for accounts, therapist review, wellness, consent-based family support, private AI chats, support groups, and scheduled therapist sessions.</p>
+        <div class="intro-badges"><span id="table-count-badge">Loading tables</span><span id="column-count-badge">Loading columns</span><span id="relationship-count-badge">Loading relationships</span></div>
+      </div>
+      <aside class="source-note" aria-label="Schema verification note">
+        <span class="note-icon" aria-hidden="true">i</span>
+        <div><strong>SSMS-reviewed schema</strong><p>The project owner reports 18 tables, 110 columns, and review of keys, foreign keys, indexes, and CHECK constraints in SSMS. This reference follows database-data.js; the catalog export was not supplied for line-by-line reconciliation.</p></div>
+      </aside>
+    </section>
+
+    <nav class="tabs" role="tablist" aria-label="Database documentation sections">
+      <button class="tab-button" id="tab-er" type="button" role="tab" aria-selected="true" aria-controls="panel-er" tabindex="0">ER Diagram</button>
+      <button class="tab-button" id="tab-schema" type="button" role="tab" aria-selected="false" aria-controls="panel-schema" tabindex="-1">Schema Diagram</button>
+      <button class="tab-button" id="tab-tables" type="button" role="tab" aria-selected="false" aria-controls="panel-tables" tabindex="-1">Tables</button>
+      <button class="tab-button" id="tab-sql" type="button" role="tab" aria-selected="false" aria-controls="panel-sql" tabindex="-1">SQL Script</button>
+      <button class="tab-button" id="tab-rules" type="button" role="tab" aria-selected="false" aria-controls="panel-rules" tabindex="-1">Rules</button>
+    </nav>
+
+    <section class="tab-panel" id="panel-er" role="tabpanel" aria-labelledby="tab-er" tabindex="0">
+      <div class="section-heading"><div><p class="eyebrow">RELATIONSHIP OVERVIEW</p><h2>Entity relationship diagram</h2><p>See how Nafas records connect. Select a table to focus its relationships.</p></div><div class="diagram-tools"><label class="toggle-control"><input id="hide-users-relations-er" type="checkbox"><span>Hide Users hub links <b id="hidden-count-er">0 hidden</b></span></label><label class="toggle-control"><input id="show-labels-er" type="checkbox" checked><span>Relationship labels</span></label></div></div>
+      <div class="diagram-toolbar"><div class="zoom-controls"><button type="button" data-zoom="out" data-view="er" aria-label="Zoom out">−</button><button type="button" data-zoom="fit" data-view="er">Fit</button><button type="button" data-zoom="in" data-view="er" aria-label="Zoom in">+</button><span id="zoom-value-er" aria-live="polite">100%</span></div><div id="table-info-er" class="table-info" aria-live="polite">Select a table to inspect its connections.</div></div>
+      <div class="diagram-viewport" id="viewport-er" tabindex="0" aria-label="Scrollable entity relationship diagram"><svg id="diagram-er" class="diagram-svg" role="img" aria-label="Nafas entity relationship diagram"></svg></div>
+      <div id="group-legend-er" class="group-legend" aria-label="Table groups"></div>
+      <div class="notation-legend" aria-label="Relationship notation"><strong>Cardinality</strong><span><i class="notation-one"></i> one</span><span><i class="notation-optional"></i> optional</span><span><i class="notation-many"></i> many</span></div>
+    </section>
+
+    <section class="tab-panel" id="panel-schema" role="tabpanel" aria-labelledby="tab-schema" tabindex="0" hidden>
+      <div class="section-heading"><div><p class="eyebrow">COLUMN LEVEL</p><h2>Schema diagram</h2><p>Column types and key markers are shown inside each table. Relationship paths connect foreign keys to referenced keys.</p></div><div class="diagram-tools"><label class="toggle-control"><input id="hide-users-relations-schema" type="checkbox"><span>Hide Users hub links <b id="hidden-count-schema">0 hidden</b></span></label><label class="toggle-control"><input id="show-labels-schema" type="checkbox" checked><span>Relationship labels</span></label></div></div>
+      <div class="diagram-toolbar"><div class="zoom-controls"><button type="button" data-zoom="out" data-view="schema" aria-label="Zoom out">−</button><button type="button" data-zoom="fit" data-view="schema">Fit</button><button type="button" data-zoom="in" data-view="schema" aria-label="Zoom in">+</button><span id="zoom-value-schema" aria-live="polite">100%</span></div><div id="table-info-schema" class="table-info" aria-live="polite">Select a table to inspect its columns and connections.</div></div>
+      <div class="diagram-viewport" id="viewport-schema" tabindex="0" aria-label="Scrollable full schema diagram"><svg id="diagram-schema" class="diagram-svg" role="img" aria-label="Nafas SQL Server schema diagram"></svg></div>
+      <div id="group-legend-schema" class="group-legend" aria-label="Table groups"></div>
+      <div class="notation-legend"><strong>Keys</strong><span><b class="key-chip pk">PK</b> Primary Key</span><span><b class="key-chip fk">FK</b> Foreign Key</span><span><b class="key-chip uq">UQ</b> Unique</span><span>Types shown on the right</span></div>
+    </section>
+
+    <section class="tab-panel" id="panel-tables" role="tabpanel" aria-labelledby="tab-tables" tabindex="0" hidden>
+      <div class="section-heading"><div><p class="eyebrow">TABLE REFERENCE</p><h2>Tables and columns</h2><p>Browse each table, its keys, and the relationships pointing to and from it.</p></div><label class="search-box"><span class="sr-only">Filter tables</span><span aria-hidden="true">⌕</span><input id="table-search" type="search" placeholder="Find a table or column"></label></div>
+      <div id="table-groups" class="table-groups"></div>
+    </section>
+
+    <section class="tab-panel" id="panel-sql" role="tabpanel" aria-labelledby="tab-sql" tabindex="0" hidden>
+      <div class="section-heading"><div><p class="eyebrow">HISTORICAL GENERATED REFERENCE</p><h2>V2 add-only script</h2><p>This script was generated from the V2 table model, not reverse-generated from the verified database. Do not use it as a live schema export.</p></div><div class="code-actions"><button id="copy-sql" type="button" class="button-secondary">Copy script</button><button id="download-sql" type="button" class="button-primary">Download .sql</button></div></div>
+      <div class="verification-banner"><strong>Historical reference; not a verification artifact.</strong> The project owner reports that the six V2 tables are part of the reviewed 18-table database. This script remains a model-generated add-only script; its existence checks do not verify existing object definitions. Role, active membership, group ownership, and therapist approval checks remain controlled application/database-process rules.</div>
+      <pre class="sql-window"><code id="sql-output" aria-label="Generated SQL Server script"></code></pre>
+      <p id="sql-feedback" class="feedback" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="tab-panel" id="panel-rules" role="tabpanel" aria-labelledby="tab-rules" tabindex="0" hidden>
+      <div class="section-heading"><div><p class="eyebrow">PRIVACY AND WORKFLOWS</p><h2>Business rules</h2><p>Application behavior that shapes how the data can be accessed.</p></div></div>
+      <div id="rules-grid" class="rules-grid"></div>
+      <section class="status-section"><div class="section-heading compact"><div><p class="eyebrow">STATUS REFERENCE</p><h2>Statuses in the interface</h2><p>The descriptions below follow the approved core rules and V2 decisions.</p></div></div><div class="responsive-table"><table><thead><tr><th scope="col">Field</th><th scope="col">Value</th><th scope="col">Meaning</th></tr></thead><tbody id="status-map-body"></tbody></table></div></section>
+      <section class="verification-section"><div class="section-heading compact"><div><p class="eyebrow">DOCUMENTATION NOTES</p><h2>Verification boundaries</h2></div></div><ul id="verification-notes"></ul></section>
+    </section>
+
+    <footer class="site-footer"><span>Nafas · Database Design V2</span><span>Designed for clear, consent-aware care.</span></footer>
+  </main>
+</body>
+</html>
+
+
+

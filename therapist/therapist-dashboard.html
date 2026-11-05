@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -45,6 +45,14 @@
       <div class="portal-container therapist-container"><section class="portal-view" id="dashboard" data-title="Therapist Dashboard" aria-labelledby="dashboard-title">
           <div class="page-heading"><div><p class="eyebrow">THERAPIST WORKSPACE</p><h1 id="dashboard-title">Therapist Dashboard</h1><p class="page-description">A focused view of example sessions, requests, and follow-up work.</p></div></div>
           <div class="th-demo-banner" role="note"><strong>Fictional demo workspace.</strong> The sample records below are invented for interface preview. No real client or appointment data is connected.</div>
+          <section class="panel promotion-panel" aria-labelledby="promotion-title">
+            <div class="panel-heading"><div><p class="eyebrow">OPTIONAL PAID PLACEMENT · SIMULATED</p><h2 id="promotion-title">Featured listing · Sponsored</h2></div><span class="status-pill" id="promotion-status">Not requested</span></div>
+            <p class="promotion-copy">Paid promotion changes listing visibility only. It does not indicate clinical quality, qualifications, or Admin verification. No payment is collected in this prototype.</p>
+            <label class="promotion-consent"><input type="checkbox" id="directory-listing-consent"><span>Allow my approved professional name, title, and specialization to appear in the Nafas directory. This is optional and can be turned off.</span></label>
+            <p class="field-hint" id="promotion-expiration"></p>
+            <button type="button" class="secondary-button" id="promotion-request">Request monthly Sponsored placement · simulated</button>
+            <p id="promotion-feedback" class="field-hint" role="status" aria-live="polite"></p>
+          </section>
           <div class="th-stat-grid" aria-label="Workspace summary">
             <article class="th-stat-card"><span class="th-stat-icon">♧</span><p>Active clients</p><strong id="summary-active-clients">1</strong><small>fictional sample</small></article>
             <article class="th-stat-card"><span class="th-stat-icon">▤</span><p>Today's sessions</p><strong id="summary-today-sessions">1</strong><small>fictional schedule</small></article>
@@ -59,8 +67,10 @@
         </section></div>
     </main>
   </div>
+<script src="therapist-access.js" defer></script>
 <script src="therapist.js" defer></script>
 <script src="therapist-nav.js" defer></script>
 <script src="therapist-dashboard.js" defer></script>
+<script src="therapist-promotion.js" defer></script>
 </body>
 </html>

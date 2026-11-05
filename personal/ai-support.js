@@ -19,6 +19,20 @@ document.addEventListener("DOMContentLoaded", function () {
     const logoutButton = document.getElementById("logout-button");
     const currentYear = document.getElementById("current-year");
     const inputStatus = document.getElementById("input-status");
+    const voiceInputButton = document.getElementById("voice-input-button");
+    const chooseImageButton = document.getElementById("choose-image-button");
+    const takePhotoButton = document.getElementById("take-photo-button");
+    const imageInput = document.getElementById("image-input");
+    const cameraInput = document.getElementById("camera-input");
+    const attachmentPreview = document.getElementById("attachment-preview");
+    const attachmentPreviewImage = document.getElementById("attachment-preview-image");
+    const attachmentPreviewName = document.getElementById("attachment-preview-name");
+    const removeAttachmentButton = document.getElementById("remove-attachment");
+    let selectedImage = null;
+    let selectedImagePreviewUrl = null;
+    let messageImageUrls = new Set();
+    let speechRecognition = null;
+    let isListening = false;
 
     if (currentYear) currentYear.textContent = new Date().getFullYear();
 
@@ -162,7 +176,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    function addMessage(text, sender) {
+    function addMessage(text, sender, imageFile) {
         const wrapper = document.createElement("div");
         wrapper.className = "chat-message " + sender;
 
@@ -173,6 +187,24 @@ document.addEventListener("DOMContentLoaded", function () {
         const bubble = document.createElement("div");
         bubble.className = "message-bubble";
         bubble.textContent = text;
+
+        if (imageFile) {
+            const attachment = document.createElement("div");
+            attachment.className = "message-attachment";
+
+            const image = document.createElement("img");
+            const imageUrl = URL.createObjectURL(imageFile);
+            messageImageUrls.add(imageUrl);
+            image.src = imageUrl;
+            image.alt = "Image attached to your message";
+
+            const note = document.createElement("small");
+            note.textContent = "Local preview only. Image analysis needs an image-capable AI backend.";
+
+            attachment.appendChild(image);
+            attachment.appendChild(note);
+            bubble.appendChild(attachment);
+        }
 
         wrapper.appendChild(label);
         wrapper.appendChild(bubble);
@@ -217,9 +249,9 @@ document.addEventListener("DOMContentLoaded", function () {
         return "I'm here to listen. What would you like to talk about?";
     }
 
-    function sendMessage(value) {
+    function sendMessage(value, imageFile) {
         const message = (value || "").trim();
-        if (!message || !chatMessages) return;
+        if ((!message && !imageFile) || !chatMessages) return;
 
         const safetyConcernDetected = containsSafetyConcern(message);
 
@@ -227,10 +259,16 @@ document.addEventListener("DOMContentLoaded", function () {
             welcomeMessage.remove();
         }
 
-        addMessage(message, "user");
+        addMessage(message, "user", imageFile);
 
         if (inputStatus) inputStatus.textContent = "Message not saved.";
         if (messageInput) messageInput.value = "";
+
+        if (!message) {
+            addMessage("Your image is shown in the conversation, but this demo does not send it to an AI service or analyze it. Image analysis needs an image-capable AI backend.", "assistant");
+            if (messageInput) messageInput.focus();
+            return;
+        }
 
         if (safetyConcernDetected) {
             showSafetyAlert();
@@ -249,15 +287,163 @@ document.addEventListener("DOMContentLoaded", function () {
         if (messageInput) messageInput.focus();
     }
 
+    function clearSelectedImage() {
+        selectedImage = null;
+        if (selectedImagePreviewUrl) URL.revokeObjectURL(selectedImagePreviewUrl);
+        selectedImagePreviewUrl = null;
+        if (attachmentPreviewImage) attachmentPreviewImage.removeAttribute("src");
+        if (attachmentPreviewName) attachmentPreviewName.textContent = "";
+        if (attachmentPreview) attachmentPreview.hidden = true;
+        if (imageInput) imageInput.value = "";
+        if (cameraInput) cameraInput.value = "";
+    }
+
+    function selectImage(input) {
+        const file = input && input.files && input.files[0];
+        if (!file) return;
+
+        if (!file.type || !file.type.startsWith("image/")) {
+            if (inputStatus) inputStatus.textContent = "Choose a valid image file.";
+            input.value = "";
+            return;
+        }
+        if (file.size > 10 * 1024 * 1024) {
+            if (inputStatus) inputStatus.textContent = "Choose an image smaller than 10 MB.";
+            input.value = "";
+            return;
+        }
+
+        clearSelectedImage();
+        selectedImage = file;
+        selectedImagePreviewUrl = URL.createObjectURL(file);
+        if (attachmentPreviewImage) attachmentPreviewImage.src = selectedImagePreviewUrl;
+        if (attachmentPreviewName) attachmentPreviewName.textContent = file.name || "Selected image";
+        if (attachmentPreview) attachmentPreview.hidden = false;
+        if (inputStatus) inputStatus.textContent = "Image stays in this browser. Image analysis needs an image-capable AI backend.";
+        input.value = "";
+    }
+
+    if (chooseImageButton && imageInput) {
+        chooseImageButton.addEventListener("click", function () {
+            imageInput.click();
+        });
+        imageInput.addEventListener("change", function () {
+            selectImage(imageInput);
+        });
+    }
+
+    if (takePhotoButton && cameraInput) {
+        takePhotoButton.addEventListener("click", function () {
+            if (inputStatus) inputStatus.textContent = "Opening your device's camera. Camera capture depends on browser and device support.";
+            try {
+                cameraInput.click();
+            } catch (error) {
+                if (inputStatus) inputStatus.textContent = "Camera capture is unavailable here. Choose an image or type your message instead.";
+            }
+        });
+        cameraInput.addEventListener("change", function () {
+            selectImage(cameraInput);
+        });
+        cameraInput.addEventListener("cancel", function () {
+            if (inputStatus) inputStatus.textContent = "Camera or photo selection was canceled or unavailable. You can choose an image or type your message.";
+        });
+    }
+
+    if (removeAttachmentButton) {
+        removeAttachmentButton.addEventListener("click", function () {
+            clearSelectedImage();
+            if (inputStatus) inputStatus.textContent = "Image removed. Your message is not saved.";
+        });
+    }
+
+    if (voiceInputButton) {
+        voiceInputButton.addEventListener("click", function () {
+            if (isListening && speechRecognition) {
+                speechRecognition.stop();
+                isListening = false;
+                voiceInputButton.setAttribute("aria-pressed", "false");
+                voiceInputButton.setAttribute("aria-label", "Start voice input");
+                if (inputStatus) inputStatus.textContent = "Stopped listening. Review or edit your text before sending.";
+                return;
+            }
+
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!SpeechRecognition) {
+                if (inputStatus) inputStatus.textContent = "Voice input is not supported in this browser. You can type your message instead.";
+                return;
+            }
+
+            speechRecognition = new SpeechRecognition();
+            speechRecognition.continuous = false;
+            speechRecognition.interimResults = false;
+            speechRecognition.lang = document.documentElement.lang || navigator.language || "en-US";
+
+            speechRecognition.onresult = function (event) {
+                const transcript = Array.from(event.results || [])
+                    .map(function (result) { return result[0] && result[0].transcript || ""; })
+                    .join(" ")
+                    .trim();
+                if (!transcript) {
+                    if (inputStatus) inputStatus.textContent = "No speech was recognized. Try again or type your message.";
+                    return;
+                }
+                const existingText = messageInput.value.trim();
+                messageInput.value = existingText ? existingText + " " + transcript : transcript;
+                messageInput.focus();
+                if (inputStatus) inputStatus.textContent = "Speech transcribed. Review or edit the text, then press Send.";
+            };
+
+            speechRecognition.onerror = function (event) {
+                const errors = {
+                    "not-allowed": "Microphone permission was denied. Allow access in your browser settings or type your message.",
+                    "service-not-allowed": "Speech recognition is unavailable. You can type your message instead.",
+                    "audio-capture": "No microphone is available. You can type your message instead.",
+                    "no-speech": "No speech was detected. Try again when ready.",
+                    "network": "Speech recognition could not connect. Check your connection or type your message."
+                };
+                if (inputStatus) inputStatus.textContent = errors[event.error] || "Voice input stopped. You can type your message instead.";
+            };
+
+            speechRecognition.onend = function () {
+                isListening = false;
+                voiceInputButton.setAttribute("aria-pressed", "false");
+                voiceInputButton.setAttribute("aria-label", "Start voice input");
+            };
+
+            try {
+                if (inputStatus) inputStatus.textContent = "Starting browser speech recognition. Audio may be processed by your browser's service; Nafas does not save recordings.";
+                speechRecognition.start();
+                isListening = true;
+                voiceInputButton.setAttribute("aria-pressed", "true");
+                voiceInputButton.setAttribute("aria-label", "Stop voice input");
+                if (inputStatus) inputStatus.textContent = "Listening once. Your browser may process audio under its privacy policy; review the transcription before sending.";
+            } catch (error) {
+                isListening = false;
+                voiceInputButton.setAttribute("aria-pressed", "false");
+                if (inputStatus) inputStatus.textContent = "Could not start voice input. Check microphone permission or type your message.";
+            }
+        });
+    }
+
     if (chatForm) {
         chatForm.addEventListener("submit", function (event) {
             event.preventDefault();
-            if (messageInput) sendMessage(messageInput.value);
+            if (!messageInput) return;
+            if (!messageInput.value.trim() && !selectedImage) {
+                messageInput.focus();
+                return;
+            }
+            const imageToSend = selectedImage;
+            sendMessage(messageInput.value, imageToSend);
+            if (imageToSend) clearSelectedImage();
         });
     }
 
     function resetChat() {
         if (!chatMessages) return;
+        clearSelectedImage();
+        messageImageUrls.forEach(function (url) { URL.revokeObjectURL(url); });
+        messageImageUrls.clear();
         chatMessages.replaceChildren();
 
         if (welcomeMessage) chatMessages.appendChild(welcomeMessage);
@@ -272,6 +458,12 @@ document.addEventListener("DOMContentLoaded", function () {
     if (newChatButton) {
         newChatButton.addEventListener("click", resetChat);
     }
+
+    window.addEventListener("beforeunload", function () {
+        clearSelectedImage();
+        messageImageUrls.forEach(function (url) { URL.revokeObjectURL(url); });
+        messageImageUrls.clear();
+    });
 
     function openSidebar() {
         if (!sidebar || !sidebarOverlay || !menuButton) return;
@@ -319,6 +511,7 @@ document.addEventListener("DOMContentLoaded", function () {
         logoutButton.addEventListener("click", function () {
             const confirmed = window.confirm("Return to the login page?");
             if (confirmed) {
+                try { sessionStorage.removeItem("nafas.activeDemoAccount.v1"); } catch (error) {}
                 window.location.href = "../loginpage/login.html";
             }
         });

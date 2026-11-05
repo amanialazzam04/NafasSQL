@@ -12,6 +12,8 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="register.css">
+    <link rel="stylesheet" href="../shared/i18n.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -54,6 +56,8 @@
 
     <section class="form-side">
         <div class="register-card">
+
+            <div class="language-switcher page-language-switcher" role="group" aria-label="Select language"><button type="button" data-language-option="ar" lang="ar" aria-label="Switch language to Arabic">العربية</button><span class="language-divider" aria-hidden="true">|</span><button type="button" data-language-option="en" lang="en" aria-label="Switch language to English">English</button></div>
 
             <a href="../homepage/home.html" class="mobile-logo">
                 <img src="../homepage/assets/nafas-logo-transparent.png" alt="Nafas" class="registration-logo">
@@ -190,7 +194,7 @@
                 </button>
 
                 <p class="demo-note">
-                    Frontend-only demo authentication. A successful registration stores this account temporarily in this browser tab's session storage so you can sign in and test the selected portal. It is not sent to a server, is not secure authentication, and is cleared when the tab session ends.
+                Frontend-only demo authentication. This account is stored in this browser's local storage. It is not sent to a server and is not secure authentication.
                 </p>
             </form>
 
@@ -209,6 +213,8 @@
     </section>
 
 </main>
+<script src="../shared/translations.js"></script>
+<script src="../shared/i18n.js"></script>
 <script src="register.js" defer></script>
 </body>
 </html>

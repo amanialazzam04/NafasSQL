@@ -1,25 +1,27 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sessions & Support | Nafas</title>
   <link rel="stylesheet" href="session.css">
+  <link rel="stylesheet" href="personal-ui.css">
 </head>
-<body>
+<body class="personal-portal personal-portal--horizontal">
   <aside class="sidebar">
     <a href="dashbord.html" class="brand" aria-label="Nafas home">
       <img src="../homepage/assets/nafas-logo-transparent.png" alt="Nafas" class="logo-image">
     </a>
 
-    <p class="sidebar-heading">MENU</p>
+    <p class="sidebar-label">PERSONAL SPACE</p>
 
-    <nav class="navigation" aria-label="Main navigation">
-      <a href="dashbord.html" class="nav-link"><span class="nav-icon">⌂</span>Dashboard</a>
-      <a href="ai-support.html" class="nav-link"><span class="nav-icon">◉</span>AI Support</a>
-      <a href="wellness.html" class="nav-link"><span class="nav-icon">◇</span>Daily Wellness</a>
-      <a href="session.html" class="nav-link active" aria-current="page"><span class="nav-icon">▤</span>Sessions & Support</a>
-      <a href="profile.html" class="nav-link"><span class="nav-icon">○</span>My Profile</a>
+        <nav class="sidebar-nav navigation" aria-label="Main navigation">
+      <a href="dashbord.html" class="nav-link"><span class="nav-icon">&#8962;</span> Dashboard</a>
+      <a href="ai-support.html" class="nav-link"><span class="nav-icon">&#10047;</span> AI Support <span class="nav-badge">AI</span></a>
+      <a href="wellness.html" class="nav-link"><span class="nav-icon">&#9788;</span> Daily Wellness</a>
+      <a href="journal.html" class="nav-link"><span class="nav-icon">&#9998;</span> Daily Journal</a>
+      <a href="session.html" class="nav-link active" aria-current="page"><span class="nav-icon">&#9673;</span> Sessions &amp; Support</a>
+      <a href="profile.html" class="nav-link"><span class="nav-icon">&#9711;</span> My Profile</a>
     </nav>
 
     <div class="sidebar-help">
@@ -150,11 +152,15 @@
 
     <!-- THERAPISTS -->
     <section class="content-section" id="therapists">
+      <div class="section-header directory-section-heading"><div><p class="eyebrow">PAID PROMOTION</p><h2>Top Therapists · Sponsored placement</h2><p class="section-description">Paid visibility does not indicate clinical quality or ranking. Only Admin-approved therapists who opt in can appear here.</p></div></div>
+      <div class="therapist-grid" id="sponsored-therapist-listings" aria-live="polite"><p class="listing-empty">No active Sponsored listings.</p></div>
+      <div class="section-header directory-section-heading"><div><p class="eyebrow">ORGANIC DIRECTORY</p><h2>Approved therapists</h2><p class="section-description">Organic listings are not paid placements. Therapist credentials require Admin review before a profile is shown.</p></div></div>
+      <div class="therapist-grid" id="approved-therapist-listings" aria-live="polite"><p class="listing-empty">No approved organic therapist listings are currently available.</p></div>
       <div class="section-header">
         <div>
-          <p class="eyebrow">INDIVIDUAL SUPPORT</p>
-          <h2>Meet Our Therapists</h2>
-          <p class="section-description">Prepare a request for an individual support session.</p>
+          <p class="eyebrow">FICTIONAL EXAMPLES</p>
+          <h2>Sample therapist profiles</h2>
+          <p class="section-description">These existing cards are fictional prototype examples, not approved provider listings.</p>
         </div>
       </div>
 
@@ -303,6 +309,8 @@
       <span>Your wellbeing matters.</span>
     </footer>
   </main>
+<script src="personal-access.js" defer></script>
 <script src="session.js" defer></script>
+<script src="therapist-listings.js" defer></script>
 </body>
 </html>

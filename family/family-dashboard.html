@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -48,23 +48,20 @@
       <div class="portal-container"><section class="portal-view" id="dashboard" data-title="Family Dashboard" aria-labelledby="dashboard-title">
           <div class="page-heading">
             <div><p class="eyebrow">FAMILY DASHBOARD</p><h1 id="dashboard-title">Support, with their permission.</h1><p class="page-description">See only the updates your loved one has chosen to share with you.</p></div>
-            <span class="demo-status"><span class="status-dot muted-dot"></span> No family data connected</span>
+            <span class="demo-status" id="family-data-status"><span class="status-dot muted-dot"></span> No family data connected</span>
           </div>
           <section class="welcome-card">
             <div class="welcome-copy"><p class="eyebrow">A SPACE FOR FAMILY SUPPORT</p><h2>Start with listening and care.</h2><p>Nafas keeps personal wellbeing information private unless a person chooses to share specific updates. Connect with a loved one to see any information they have consented to share.</p><a class="primary-button view-link" href="support-guidance.html">Explore supportive guidance <span>→</span></a></div>
             <div class="welcome-art" aria-hidden="true"><span class="welcome-orb">♡</span><span class="welcome-ring"></span></div>
           </section>
           <section class="connection-summary" aria-label="Connection summary">
-            <article class="summary-card"><span class="summary-label">CONNECTED LOVED ONES</span><strong>0</strong><span>No accounts connected</span></article>
-            <article class="summary-card"><span class="summary-label">SHARING UPDATES</span><strong>0</strong><span>No one has shared updates</span></article>
-            <article class="summary-card"><span class="summary-label">SHARING STATUS</span><strong class="summary-status">Not connected</strong><span>Consent is controlled by each Personal User</span></article>
+            <article class="summary-card"><span class="summary-label">CONNECTED LOVED ONES</span><strong id="family-connected-count">0</strong><span>No accounts connected</span></article>
+            <article class="summary-card"><span class="summary-label">SHARING UPDATES</span><strong id="family-sharing-count">0</strong><span>No one has shared updates</span></article>
+            <article class="summary-card"><span class="summary-label">SHARING STATUS</span><strong class="summary-status" id="family-summary-status">Not connected</strong><span>Consent is controlled by each Personal User</span></article>
             <a class="summary-card summary-action view-link" href="my-loved-ones.html"><span class="summary-label">NEXT STEP</span><strong>Connect with a loved one</strong><span>Review connection options →</span></a>
           </section>
           <div class="dashboard-grid">
-            <section class="panel update-panel" aria-labelledby="updates-title">
-              <div class="panel-heading"><div><p class="eyebrow">CONSENTED UPDATES</p><h2 id="updates-title">Updates from loved ones</h2></div><span class="panel-icon" aria-hidden="true">♡</span></div>
-              <div class="empty-state"><span class="empty-state-icon" aria-hidden="true">○</span><h3>No updates have been shared</h3><p>There are no connected accounts or consented updates in this demo. Private journals and AI conversations are never available here.</p><a href="my-loved-ones.html" class="secondary-button view-link">Review connections</a></div>
-            </section>
+            <section class="panel update-panel" aria-labelledby="updates-title"><div class="panel-heading"><div><p class="eyebrow">CONSENTED UPDATES</p><h2 id="updates-title">Updates from loved ones</h2></div></div><div class="empty-state" id="family-dashboard-empty"><h3>No updates have been shared</h3><p>There are no connected accounts or consented updates in this demo. Private journals and AI conversations are never available here.</p><a href="my-loved-ones.html" class="secondary-button view-link">Review connections</a></div><div id="family-dashboard-shared-updates" hidden></div></section>
             <section class="panel trend-panel" aria-labelledby="trend-title">
               <div class="panel-heading"><div><p class="eyebrow">WEEKLY MOOD</p><h2 id="trend-title">Shared mood trends</h2></div><span class="panel-icon" aria-hidden="true">⌁</span></div>
               <div class="empty-state" id="trend-empty"><span class="empty-state-icon" aria-hidden="true">⌁</span><h3>No shared mood data</h3><p>Weekly trends appear only when a Personal User connects and explicitly enables mood sharing.</p></div>
@@ -87,7 +84,9 @@
         </section></div>
     </main>
   </div>
+<script src="family-access.js" defer></script>
 <script src="family-dashboard.js" defer></script>
+
 <script src="family.js" defer></script>
 </body>
 </html>

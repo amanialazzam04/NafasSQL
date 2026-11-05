@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#f5fbff">
+  <title>Safety &amp; Alerts | Nafas Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="safety-alerts.css">
+</head>
+<body><div class="family-layout admin-layout"><aside class="sidebar" id="admin-sidebar">
+  <a href="admin-dashboard.html" class="logo" aria-label="Nafas Admin Dashboard"><img src="../homepage/assets/nafas-logo-transparent.png" alt="Nafas" class="logo-image"></a><div class="sidebar-label">ADMIN SPACE</div>
+  <nav class="sidebar-nav" aria-label="Admin Portal navigation">
+    <a href="admin-dashboard.html" class="nav-link"><span class="nav-icon">&#8962;</span><span>Admin Dashboard</span></a>
+    <a href="user-management.html" class="nav-link"><span class="nav-icon">&#9829;</span><span>User Management</span></a>
+    <a href="therapist-management.html" class="nav-link"><span class="nav-icon">&#10003;</span><span>Therapist Management</span></a>
+    <a href="family-connections.html" class="nav-link"><span class="nav-icon">&#9825;</span><span>Family &amp; Connections</span></a>
+    <a href="safety-alerts.html" class="nav-link active" aria-current="page"><span class="nav-icon">!</span><span>Safety &amp; Alerts</span></a>
+    <a href="sessions-consultations.html" class="nav-link"><span class="nav-icon">&#9645;</span><span>Sessions &amp; Consultations</span></a>
+    <a href="content-management.html" class="nav-link"><span class="nav-icon">&#9633;</span><span>Content Management</span></a>
+    <a href="reports-analytics.html" class="nav-link"><span class="nav-icon">&#9776;</span><span>Reports &amp; Analytics</span></a>
+    <a href="roles-permissions.html" class="nav-link"><span class="nav-icon">&#9671;</span><span>Roles &amp; Permissions</span></a>
+    <a href="security-audit-logs.html" class="nav-link"><span class="nav-icon">&#9672;</span><span>Security &amp; Audit Logs</span></a>
+    <a href="admin-profile-settings.html" class="nav-link"><span class="nav-icon">&#9881;</span><span>Admin Profile &amp; Settings</span></a>
+  </nav><div class="sidebar-bottom"><div class="help-card"><div class="help-icon">i</div><h3>Prototype workspace</h3><p>No live safety service or case records are connected.</p></div><a href="../loginpage/login.html" class="logout-link">Back to Role Selection</a></div>
+</aside><div class="sidebar-overlay" id="admin-sidebar-overlay"></div>
+<main class="main-content"><header class="topbar"><button type="button" class="menu-button" id="admin-menu-button" aria-label="Toggle Admin Portal navigation" aria-controls="admin-sidebar" aria-expanded="false">&#9776;</button><div class="breadcrumb"><span>Admin Space</span><span class="breadcrumb-separator">/</span><strong>Safety &amp; Alerts</strong></div><div class="topbar-actions"><span class="portal-badge"><span class="status-dot muted-dot"></span> Admin Portal &middot; Demo</span></div></header>
+<div class="portal-container"><section class="portal-view" aria-labelledby="safety-title"><div class="page-heading"><div><p class="eyebrow">SAFETY OVERSIGHT</p><h1 id="safety-title" tabindex="-1">Safety &amp; Alerts</h1><p class="page-description">A view of safety workflow boundaries for the frontend prototype.</p></div></div>
+  <section class="safety-panel"><span class="safety-symbol" aria-hidden="true">!</span><div><p class="eyebrow">LIVE CASES</p><h2>No safety alert service is connected.</h2><p>Warnings in AI Support and Sessions are shown on the Personal User's current page. This prototype does not send or store alerts for Admin review.</p></div></section>
+  <section class="panel"><div class="panel-heading"><div><p class="eyebrow">ADMIN CASE QUEUE</p><h2>Safety cases</h2></div><span class="panel-icon" aria-hidden="true">!</span></div><div class="empty-state"><span class="empty-state-icon" aria-hidden="true">&#9675;</span><h3>No connected safety cases</h3><p>No person, message, journal entry, or AI conversation is represented in this queue. A real case workflow needs a reviewed backend, clear notice, trained responders, and defined escalation procedures.</p></div></section>
+  <section class="panel"><div class="panel-heading"><div><p class="eyebrow">CURRENT PROTOTYPE BEHAVIOR</p><h2>What the warning does</h2></div></div><ul class="admin-reference-list"><li>Shows an in-page message when limited sample phrase matching detects concerning wording.</li><li>Provides guidance to contact local emergency services for immediate danger.</li><li>Does not assess risk, monitor users, contact family, or notify a therapist or Admin.</li><li>Does not share private journal or AI conversation content.</li></ul><p class="demo-note">Keyword matching may miss context and is not a clinical assessment or emergency service.</p></section>
+</section></div></main></div><script src="admin-access.js" defer></script><script src="admin.js" defer></script><script src="safety-alerts.js" defer></script></body></html>

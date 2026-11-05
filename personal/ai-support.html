@@ -1,4 +1,4 @@
-
+﻿
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,32 +7,23 @@
     <meta name="theme-color" content="#f6fcff">
     <title>AI Support | Nafas</title>
     <link rel="stylesheet" href="ai-support.css">
+    <link rel="stylesheet" href="personal-ui.css">
 </head>
-<body>
+<body class="personal-portal personal-portal--drawer">
 <div class="app-layout">
     <aside class="sidebar" id="sidebar">
         <a href="dashbord.html" class="logo" aria-label="Nafas home">
             <img src="../homepage/assets/nafas-logo-transparent.png" alt="Nafas" class="logo-image">
         </a>
 
-        <p class="sidebar-label">WORKSPACE</p>
-        <nav class="sidebar-nav" aria-label="Main navigation">
-            <a href="dashbord.html" class="nav-link">
-                <span class="nav-icon">⌂</span> Dashboard
-            </a>
-            <a href="ai-support.html" class="nav-link active" aria-current="page">
-                <span class="nav-icon">✳</span> AI Support
-                <span class="nav-badge">AI</span>
-            </a>
-            <a href="wellness.html" class="nav-link">
-                <span class="nav-icon">☼</span> Daily Wellness
-            </a>
-            <a href="session.html" class="nav-link">
-                <span class="nav-icon">♡</span> Sessions &amp; Support
-            </a>
-            <a href="profile.html" class="nav-link">
-                <span class="nav-icon">♙</span> My Profile
-            </a>
+        <p class="sidebar-label">PERSONAL SPACE</p>
+                <nav class="sidebar-nav" aria-label="Main navigation">
+          <a href="dashbord.html" class="nav-link"><span class="nav-icon">&#8962;</span> Dashboard</a>
+          <a href="ai-support.html" class="nav-link active" aria-current="page"><span class="nav-icon">&#10047;</span> AI Support <span class="nav-badge">AI</span></a>
+          <a href="wellness.html" class="nav-link"><span class="nav-icon">&#9788;</span> Daily Wellness</a>
+          <a href="journal.html" class="nav-link"><span class="nav-icon">&#9998;</span> Daily Journal</a>
+          <a href="session.html" class="nav-link"><span class="nav-icon">&#9673;</span> Sessions &amp; Support</a>
+          <a href="profile.html" class="nav-link"><span class="nav-icon">&#9711;</span> My Profile</a>
         </nav>
 
         <div class="sidebar-bottom">
@@ -53,7 +44,7 @@
         <header class="topbar">
             <button type="button" id="menu-button" class="menu-button"
                     aria-label="Toggle navigation" aria-controls="sidebar"
-                    aria-expanded="false">☰</button>
+                    aria-expanded="false">&#9776;</button>
             <div class="breadcrumb">
                 <a href="dashbord.html">Dashboard</a>
                 <span>/</span>
@@ -285,13 +276,31 @@
 
                     <form id="chat-form" class="chat-composer">
                         <label for="message-input" class="sr-only">Your message</label>
-                        <textarea id="message-input" name="message" rows="2" maxlength="2000" placeholder="Write what's on your mind..." required></textarea>
+                        <textarea id="message-input" name="message" rows="2" maxlength="2000" placeholder="Write what's on your mind..."></textarea>
+                        <div class="attachment-preview" id="attachment-preview" hidden>
+                            <img id="attachment-preview-image" alt="Selected image preview">
+                            <span id="attachment-preview-name"></span>
+                            <button type="button" id="remove-attachment" aria-label="Remove selected image">Remove</button>
+                        </div>
                         <div class="composer-toolbar">
                             <span id="input-status" role="status" aria-live="polite">Your message is not saved.</span>
+                            <div class="composer-actions">
+                                <button type="button" class="composer-tool-button" id="voice-input-button" aria-label="Start voice input" aria-pressed="false" title="Voice input">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 14a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v5a3 3 0 0 0 3 3Z"></path><path d="M19 11a7 7 0 0 1-14 0M12 18v3m-4 0h8"></path></svg>
+                                </button>
+                                <button type="button" class="composer-tool-button" id="choose-image-button" aria-label="Choose an image" title="Choose an image">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="8.5" cy="9" r="1.5"></circle><path d="m21 15-5-5L5 20"></path></svg>
+                                </button>
+                                <button type="button" class="composer-tool-button" id="take-photo-button" aria-label="Take a photo" title="Take a photo">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h3l1.5-2h7L17 7h3a1 1 0 0 1 1 1v11H3V8a1 1 0 0 1 1-1Z"></path><circle cx="12" cy="13" r="3.5"></circle></svg>
+                                </button>
                             <button type="submit" class="send-button" id="send-button">
                                 <span>Send</span><span>↑</span>
                             </button>
+                            </div>
                         </div>
+                        <input class="sr-only" type="file" id="image-input" accept="image/*" tabindex="-1" aria-hidden="true">
+                        <input class="sr-only" type="file" id="camera-input" accept="image/*" capture="environment" tabindex="-1" aria-hidden="true">
                     </form>
                 </div>
             </section>
@@ -303,6 +312,7 @@
         </div>
     </main>
 </div>
+<script src="personal-access.js" defer></script>
 <script src="ai-support.js" defer></script>
 </body>
 </html>

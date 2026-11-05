@@ -1,2 +1,89 @@
 /* Page-specific stylesheet; shared visual system lives in family.css. */
 @import url("family.css");
+
+/* Page-scoped hierarchy and chat sizing; shared family portal styles remain unchanged. */
+:root[data-family-page="support-guidance"] .family-chat-panel {
+  gap: 17px;
+  margin-top: 0;
+  padding: clamp(19px, 2.5vw, 30px);
+  border-color: #cfe8f1;
+  box-shadow: var(--shadow);
+}
+
+:root[data-family-page="support-guidance"] .family-chat-panel .panel-heading {
+  margin-bottom: 0;
+}
+
+:root[data-family-page="support-guidance"] .family-chat-panel .panel-heading h2 {
+  font-size: 20px;
+}
+
+:root[data-family-page="support-guidance"] .family-chat-intro {
+  max-width: 820px;
+}
+
+:root[data-family-page="support-guidance"] .family-chat-prompts {
+  gap: 9px;
+}
+
+:root[data-family-page="support-guidance"] .family-chat-transcript {
+  min-height: 300px;
+  max-height: 460px;
+  padding: 19px;
+  border-color: #cfe3ed;
+}
+
+:root[data-family-page="support-guidance"] .family-chat-compose {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 12px;
+}
+
+:root[data-family-page="support-guidance"] .family-chat-compose textarea {
+  min-height: 58px;
+  width: 100%;
+}
+
+:root[data-family-page="support-guidance"] .family-chat-compose button {
+  min-width: 112px;
+}
+
+:root[data-family-page="support-guidance"] .family-chat-loading,
+:root[data-family-page="support-guidance"] .family-chat-error {
+  margin: -5px 0;
+}
+
+:root[data-family-page="support-guidance"] .guidance-grid {
+  margin-top: 20px;
+  gap: 12px;
+}
+
+:root[data-family-page="support-guidance"] .support-card {
+  min-height: 0;
+  padding: 19px;
+}
+
+:root[data-family-page="support-guidance"] .guidance-library,
+:root[data-family-page="support-guidance"] .prompt-panel {
+  margin-top: 17px;
+}
+
+@media (max-width: 640px) {
+  :root[data-family-page="support-guidance"] .family-chat-panel .panel-heading {
+    gap: 12px;
+  }
+
+  :root[data-family-page="support-guidance"] .family-chat-transcript {
+    min-height: 260px;
+    padding: 14px;
+  }
+
+  :root[data-family-page="support-guidance"] .family-chat-compose {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  :root[data-family-page="support-guidance"] .family-chat-compose button {
+    width: 100%;
+  }
+}

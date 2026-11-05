@@ -19,9 +19,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const share=document.getElementById("demo-sharing-toggle"), empty=document.getElementById("trend-empty"), preview=document.getElementById("trend-preview");
   share?.addEventListener("change",()=>{empty.hidden=share.checked;preview.hidden=!share.checked;});
   const connection=document.getElementById("connection-form"), connectionFeedback=document.getElementById("connection-feedback");
-  connection?.addEventListener("submit",e=>{e.preventDefault();connectionFeedback.textContent="Demo preview only. No invitation was sent, no account was looked up, and no connection or sharing was enabled. The Personal User must explicitly consent.";});
-  connection?.addEventListener("reset",()=>{connectionFeedback.textContent="";});
-  document.getElementById("disconnect-preview-button")?.addEventListener("click",function(){const confirmed=window.confirm("Preview the disconnect confirmation? No family account is connected in this demo, so no connection will be changed.");document.getElementById("disconnect-preview-feedback").textContent=confirmed?"Confirmation preview complete. No account was connected or disconnected.":"Preview canceled. No account was connected or disconnected.";});
   const filters=[...document.querySelectorAll("[data-resource-filter]")], cards=[...document.querySelectorAll("[data-resource-category]")];
   filters.forEach(button=>button.addEventListener("click",()=>{filters.forEach(filter=>{const active=filter===button;filter.classList.toggle("active",active);filter.setAttribute("aria-pressed",String(active));});cards.forEach(card=>{card.hidden=button.dataset.resourceFilter!=="all"&&button.dataset.resourceFilter!==card.dataset.resourceCategory;});}));
   const chatForm=document.getElementById("family-chat-form"), chatInput=document.getElementById("family-chat-input"), transcript=document.getElementById("family-chat-transcript"), loading=document.getElementById("family-chat-loading"), error=document.getElementById("family-chat-error"), send=document.getElementById("family-chat-send"), reset=document.getElementById("family-chat-reset");
@@ -41,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const profile=document.getElementById("profile-form"), profileFeedback=document.getElementById("profile-feedback");let dirty=false;
   function markDirty(){dirty=true;profileFeedback.textContent="";}
   profile?.addEventListener("input",markDirty);profile?.addEventListener("change",markDirty);profile?.addEventListener("submit",e=>{e.preventDefault();profileFeedback.textContent="Preview complete. Profile details were not saved, and no notification was sent.";});
-  document.querySelectorAll(".logout-link, .role-link").forEach(link=>link.addEventListener("click",e=>{if(dirty&&!window.confirm("Your profile preview has unsaved changes. Return to role selection and discard this page's entries?"))e.preventDefault();else dirty=false;}));
+  document.querySelectorAll(".logout-link, .role-link").forEach(link=>link.addEventListener("click",e=>{if(dirty&&!window.confirm("Your profile preview has unsaved changes. Return to role selection and discard this page's entries?"))e.preventDefault();else {dirty=false;try{sessionStorage.removeItem("nafas.activeDemoAccount.v1");}catch(error){}}}));
   window.addEventListener("beforeunload",e=>{if(dirty){e.preventDefault();e.returnValue="";}});
   [connection,consultation,promptForm].filter(Boolean).forEach(form=>form.addEventListener("input",()=>{const feedback=form.querySelector(".form-feedback");if(feedback)feedback.textContent="";}));
 });

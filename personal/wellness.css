@@ -743,3 +743,15 @@ input:focus-visible {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Personal Portal type scale: readable across dashboard, profile, sessions, and tools. */
+body { font-size: 15px; line-height: 1.55; }
+.page-title, .page-heading h1, .welcome-copy h1 { line-height: 1.2; }
+.page-description, .welcome-copy > p, .panel p, .card p, .form-field label, label,
+.nav-link, button, .primary-button, .secondary-button, input, select, textarea { font-size: 14px; }
+.sidebar-label, .eyebrow, .breadcrumb, .status-pill, .badge, .field-hint, small { font-size: 12px; }
+.table-wrap table, table { font-size: 13px; }
+.app-layout small, .app-layout [class*="hint"], .app-layout [class*="meta"],
+.app-layout [class*="status"], .app-layout [class*="caption"] { font-size: 12px; line-height: 1.45; }
+.app-layout .sidebar-label, .app-layout .nav-link, .app-layout .primary-button,
+.app-layout .secondary-button { font-size: 14px; }

@@ -31,3 +31,11 @@
   .th-card-actions { align-items: stretch; }
 }
 @media (prefers-reduced-motion: reduce) { .th-shortcut, .th-compact-item { transition: none; } }
+
+/* Therapist Portal readability overrides for compact cards, notes, forms, and status text. */
+.therapist-layout { font-size: 15px; line-height: 1.55; }
+.therapist-layout p, .therapist-layout li, .therapist-layout label, .therapist-layout input,
+.therapist-layout select, .therapist-layout textarea, .therapist-layout button { font-size: 14px; }
+.therapist-layout small, .therapist-layout .th-client-meta, .therapist-layout .th-status,
+.therapist-layout .th-task-priority { font-size: 12px; }
+.therapist-layout .th-card-topline h2, .therapist-layout .th-card-topline h3 { font-size: 16px; line-height: 1.35; }

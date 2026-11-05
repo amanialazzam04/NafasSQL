@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -20,6 +20,7 @@
         <a href="user-management.html" class="nav-link active" aria-current="page"><span class="nav-icon">♙</span><span>User Management</span></a>
         <a href="therapist-management.html" class="nav-link"><span class="nav-icon">✚</span><span>Therapist Management</span></a>
         <a href="family-connections.html" class="nav-link"><span class="nav-icon">♡</span><span>Family &amp; Connections</span></a>
+        <a href="safety-alerts.html" class="nav-link"><span class="nav-icon">!</span><span>Safety &amp; Alerts</span></a>
         <a href="sessions-consultations.html" class="nav-link"><span class="nav-icon">◷</span><span>Sessions &amp; Consultations</span></a>
         <a href="content-management.html" class="nav-link"><span class="nav-icon">▤</span><span>Content Management</span></a>
         <a href="reports-analytics.html" class="nav-link"><span class="nav-icon">⌁</span><span>Reports &amp; Analytics</span></a>
@@ -41,11 +42,12 @@
       </header>
       <div class="portal-container"><section class="portal-view" id="users" data-title="User Management" aria-labelledby="users-title">
           <div class="page-heading"><div><p class="eyebrow">ACCOUNT DIRECTORY</p><h1 id="users-title" tabindex="-1">User Management</h1><p class="page-description">Search and review account records when an authorized user service is connected.</p></div></div>
-          <section class="panel"><div class="panel-heading"><div><p class="eyebrow">USER ACCOUNTS</p><h2>Account directory</h2></div><span class="panel-icon">♙</span></div><div class="admin-toolbar"><label class="form-field"><span class="field-label">Search accounts</span><input id="user-search" type="search" placeholder="Search by name or email" disabled aria-describedby="user-search-note"></label><label class="form-field"><span class="field-label">Account status</span><select disabled><option>All statuses</option></select></label></div><p id="user-search-note" class="section-description">Search and account actions are unavailable until a real account directory is connected.</p><div class="empty-state"><span class="empty-state-icon">○</span><h3>No accounts are connected</h3><p>No user records are loaded in this prototype. No accounts have been fabricated for the directory.</p></div></section>
+          <section class="panel"><div class="panel-heading"><div><p class="eyebrow">USER ACCOUNTS</p><h2>Account directory</h2></div><span class="panel-icon">♙</span></div><div class="admin-toolbar"><label class="form-field"><span class="field-label">Search accounts</span><input id="user-search" type="search" placeholder="Search by name or email" aria-describedby="user-search-note"></label><label class="form-field"><span class="field-label">Role</span><select id="user-role-filter"><option value="all">All roles</option><option value="user">Personal User</option><option value="family">Family Member</option><option value="therapist">Therapist</option><option value="admin">Admin</option></select></label></div><p id="user-search-note" class="section-description">Read-only local demo accounts created in this browser. Passwords and private wellbeing data are not shown.</p><div id="user-record-list"><div class="empty-state" id="user-empty"><h3>No local demo accounts yet</h3><p>Accounts created in this browser will appear here. Predefined demo accounts are not listed.</p></div></div></section>
           <section class="panel"><div class="panel-heading"><div><p class="eyebrow">ACCOUNT ACTIONS</p><h2>Administrative controls</h2></div></div><p class="section-description">Suspend, restore, or remove controls require a connected account service and an authorized record. No such record or service is available here.</p><button class="secondary-button" type="button" disabled>Account actions unavailable</button></section>
         </section></div>
     </main>
   </div>
+<script src="admin-access.js" defer></script>
 <script src="admin.js" defer></script>
 <script src="user-management.js" defer></script>
 </body>

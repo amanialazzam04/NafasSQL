@@ -282,6 +282,23 @@ h1, h2, h3 { color: var(--navy); }
   .portal-badge { gap: 6px; }
   .dashboard-grid .panel { padding: 14px; }
 }
+
+/* Portal readability baseline shared by Family, Therapist, and Admin pages. */
+.family-layout { font-size: 15px; line-height: 1.55; }
+.family-layout .nav-link, .family-layout .logout-link, .family-layout .primary-button,
+.family-layout .secondary-button, .family-layout .form-field label, .family-layout .field-label { font-size: 14px; }
+.family-layout .sidebar-label, .family-layout .eyebrow, .family-layout .portal-badge,
+.family-layout .demo-status, .family-layout .summary-label, .family-layout .status-pill,
+.family-layout .demo-label, .family-layout .optional-label { font-size: 11px; }
+.family-layout p, .family-layout li, .family-layout .page-description, .family-layout .breadcrumb,
+.family-layout .form-field input, .family-layout .form-field select, .family-layout .form-field textarea,
+.family-layout .prompt-controls select, .family-layout .chat-prompt, .family-layout .chat-speaker,
+.family-layout .family-chat-message p, .family-layout .resource-row strong,
+.family-layout .permission-row strong, .family-layout .resource-row small { font-size: 14px; }
+.family-layout small, .family-layout .summary-card>span:last-child,
+.family-layout .field-hint, .family-layout .chart-caption { font-size: 12px; }
+.family-layout .page-heading h1 { line-height: 1.2; }
+.family-layout table { font-size: 13px; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }

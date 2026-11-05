@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -48,21 +48,19 @@
       <div class="portal-container"><section class="portal-view" id="loved-ones" data-title="My Loved Ones" aria-labelledby="loved-ones-title">
           <div class="page-heading"><div><p class="eyebrow">CONNECTIONS &amp; PERMISSIONS</p><h1 id="loved-ones-title">My Loved Ones</h1><p class="page-description">Connections and sharing are controlled by each person from their own Personal User account.</p></div></div>
           <section class="panel connection-panel"><div class="panel-heading"><div><p class="eyebrow">CONNECTED PEOPLE</p><h2>Your family connections</h2></div><span class="panel-icon" aria-hidden="true">♡</span></div>
-            <div class="empty-state"><span class="empty-state-icon" aria-hidden="true">○</span><h3>No loved ones connected yet</h3><p>There are no connected family members in this demo. No connection requests can be sent or accepted here.</p><a href="shared-wellness.html" class="secondary-button view-link">See how shared wellness works</a></div>
-            <div class="demo-action-row"><button class="secondary-button" type="button" id="disconnect-preview-button">Preview disconnect confirmation</button><p class="form-feedback" id="disconnect-preview-feedback" role="status" aria-live="polite"></p></div>
-            <p class="field-hint">This demonstrates the confirmation step only; there is no connected account to review or disconnect.</p>
+            <div id="family-connected-list"><div class="empty-state" id="family-connected-empty"><h3>No loved ones connected yet</h3><p>You can use guidance, resources, and consultation information without a connection. Connections are optional and require the Personal User's consent.</p><a href="shared-wellness.html" class="secondary-button view-link">See how shared wellness works</a></div></div>
           </section>
           <section class="panel request-connection-panel"><div class="panel-heading"><div><p class="eyebrow">CONNECTION REQUEST</p><h2>Connect with a loved one</h2></div></div>
-            <p class="section-description">Enter details to preview how a request could look. This form does not contact anyone or create a connection. The Personal User must review and consent before any sharing can begin.</p>
+            <p class="section-description">Enter the Personal User's demo account email. The request is stored locally and will appear when they sign in. They must explicitly accept and choose sharing permissions before any information is available.</p>
             <form id="connection-form" class="form-grid">
               <div class="form-field"><label for="connection-name">Loved one's display name</label><input id="connection-name" name="name" type="text" autocomplete="off" minlength="2" maxlength="80" required></div>
               <div class="form-field"><label for="connection-email">Loved one's email address</label><input id="connection-email" name="email" type="email" autocomplete="off" maxlength="254" required></div>
-              <div class="form-actions"><button class="primary-button" type="submit">Preview request <span>→</span></button><button class="secondary-button" type="reset">Clear form</button><p class="form-feedback" id="connection-feedback" role="status" aria-live="polite"></p></div>
+              <div class="form-actions"><button class="primary-button" type="submit">Send demo request <span>→</span></button><button class="secondary-button" type="reset">Clear form</button><p class="form-feedback" id="connection-feedback" role="status" aria-live="polite"></p></div>
             </form>
-            <p class="demo-note">Prototype only · No account lookup, message, invitation, or consent action is connected.</p>
+            <p class="demo-note">Frontend demo only · Stored in this browser. No notification is sent; sharing stays off until the Personal User accepts and selects permissions.</p>
           </section>
           <section class="panel request-status-panel"><div class="panel-heading"><div><p class="eyebrow">REQUEST STATUS</p><h2>Incoming and outgoing requests</h2></div></div>
-            <div class="empty-state compact-empty"><span class="empty-state-icon" aria-hidden="true">○</span><h3>No requests available</h3><p>Requests are not supported by the current frontend demo. Nothing has been received or sent.</p></div>
+            <div id="family-request-list"><div class="empty-state compact-empty" id="family-request-empty"><h3>No requests available</h3><p>Your locally recorded requests and their status will appear here.</p></div></div>
           </section>
           <section class="panel permissions-panel"><div class="panel-heading"><div><p class="eyebrow">SHARING STATUS</p><h2>Consent and sharing settings</h2></div></div>
             <div class="permission-row"><span class="permission-symbol">✓</span><div><strong>Consent belongs to the Personal User</strong><p>Each person chooses whether to connect and which wellbeing updates, if any, to share.</p></div><span class="status-pill">Not connected</span></div>
@@ -73,7 +71,9 @@
         </section></div>
     </main>
   </div>
+<script src="family-access.js" defer></script>
 <script src="my-loved-ones.js" defer></script>
+
 <script src="family.js" defer></script>
 </body>
 </html>

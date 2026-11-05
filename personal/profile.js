@@ -93,7 +93,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (!confirmed) {
       event.preventDefault();
+    } else {
+      try { sessionStorage.removeItem("nafas.activeDemoAccount.v1"); } catch (error) {}
     }
+  });
+
+  document.querySelectorAll(".logout-link").forEach(function (link) {
+    link.addEventListener("click", function (event) {
+      if (!window.confirm("Are you sure you want to sign out?")) {
+        event.preventDefault();
+        return;
+      }
+      try { sessionStorage.removeItem("nafas.activeDemoAccount.v1"); } catch (error) {}
+    });
   });
 
   // Highlight the settings section currently being viewed.

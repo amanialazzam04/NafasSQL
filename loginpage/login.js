@@ -21,6 +21,8 @@ const predefinedAccounts = {
     "therapist.demo@nafas.local": {
         password: "NafasTherapist123!",
         role: "therapist",
+        name: "Demo Therapist",
+        therapistApplication: { status: "approved", demo: true },
         route: "../therapist/therapist-dashboard.html"
     },
     "admin.demo@nafas.local": {
@@ -30,25 +32,52 @@ const predefinedAccounts = {
     }
 };
 
+document.querySelectorAll("[data-demo-account]").forEach(function (button) {
+    button.addEventListener("click", function () {
+        const email = button.dataset.demoAccount;
+        const account = predefinedAccounts[email];
+        if (!account) return;
+
+        emailInput.value = email;
+        passwordInput.value = account.password;
+    });
+});
+
 function showMessage(text, type) {
-    message.textContent = text;
+    NafasI18n.setText(message, text);
     message.className = `form-message show ${type}`;
 }
 
 function getRegisteredDemoAccounts() {
+    const accounts = {};
     try {
-        const accounts = JSON.parse(sessionStorage.getItem(DEMO_ACCOUNT_STORAGE_KEY) || "{}");
-        return accounts && typeof accounts === "object" && !Array.isArray(accounts) ? accounts : {};
-    } catch (error) {
-        return {};
-    }
+        const legacyAccounts = JSON.parse(sessionStorage.getItem(DEMO_ACCOUNT_STORAGE_KEY) || "{}");
+        if (legacyAccounts && typeof legacyAccounts === "object" && !Array.isArray(legacyAccounts)) {
+            Object.assign(accounts, legacyAccounts);
+        }
+    } catch (error) {}
+    try {
+        const savedAccounts = JSON.parse(localStorage.getItem(DEMO_ACCOUNT_STORAGE_KEY) || "{}");
+        if (savedAccounts && typeof savedAccounts === "object" && !Array.isArray(savedAccounts)) {
+            Object.assign(accounts, savedAccounts);
+        }
+    } catch (error) {}
+    return accounts;
+}
+
+function updatePasswordToggleLabel() {
+    const isHidden = passwordInput.type === "password";
+    NafasI18n.setText(togglePassword, isHidden ? "common.show" : "common.hide");
+    NafasI18n.setAttribute(togglePassword, "aria-label", isHidden ? "login.password.showLabel" : "login.password.hideLabel");
 }
 
 togglePassword.addEventListener("click", function () {
     const isHidden = passwordInput.type === "password";
     passwordInput.type = isHidden ? "text" : "password";
-    togglePassword.textContent = isHidden ? "Hide" : "Show";
+    updatePasswordToggleLabel();
 });
+document.addEventListener("nafas:languagechange", updatePasswordToggleLabel);
+updatePasswordToggleLabel();
 
 loginForm.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -56,13 +85,13 @@ loginForm.addEventListener("submit", function (event) {
     const email = emailInput.value.trim().toLowerCase();
     const password = passwordInput.value;
     if (!email || !password) {
-        showMessage("Enter the email and password for one of the demo accounts.", "error");
+        showMessage("login.emailRequired", "error");
         return;
     }
 
     const account = predefinedAccounts[email] || getRegisteredDemoAccounts()[email];
     if (!account || account.password !== password) {
-        showMessage("Those demo credentials were not recognized. Check the email and password, or create a local demo account.", "error");
+        showMessage("login.credentialsInvalid", "error");
         return;
     }
 
@@ -72,17 +101,24 @@ loginForm.addEventListener("submit", function (event) {
         therapist: "../therapist/therapist-dashboard.html",
         admin: "../admin/admin-dashboard.html"
     };
-    const route = routes[account.role];
+    const route = account.role === "therapist"
+        ? (account.therapistApplication && account.therapistApplication.status === "approved"
+            ? routes.therapist
+            : "../therapist/therapist-application.html")
+        : routes[account.role];
     if (!route) {
-        showMessage("This local demo account has an unsupported role. Create another account to continue.", "error");
+        showMessage("login.unsupportedRole", "error");
         return;
     }
 
-    showMessage("Demo sign-in successful. Opening the selected account's fixed portal…", "success");
+    showMessage("login.success", "success");
+    try {
+        sessionStorage.setItem("nafas.activeDemoAccount.v1", JSON.stringify({ email: email, role: account.role }));
+    } catch (error) {}
     window.location.href = route;
 });
 
 document.getElementById("forgot-link").addEventListener("click", function (event) {
     event.preventDefault();
-    showMessage("Password recovery is not available in this frontend demo.", "error");
+    showMessage("login.recoveryUnavailable", "error");
 });

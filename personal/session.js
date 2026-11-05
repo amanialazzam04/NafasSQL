@@ -1,4 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".logout-link").forEach(function (link) {
+    link.addEventListener("click", function () {
+      try { sessionStorage.removeItem("nafas.activeDemoAccount.v1"); } catch (error) {}
+    });
+  });
   const bookingForm = document.getElementById("booking-form");
   const therapistSelect = document.getElementById("therapist-select");
   const sessionDate = document.getElementById("session-date");

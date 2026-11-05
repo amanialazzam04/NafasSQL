@@ -1,0 +1,24 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f0f9ff"><title>Therapist Application | Nafas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="therapist-profile-settings.css">
+</head>
+<body><div class="family-layout therapist-layout"><aside class="sidebar"><a href="../homepage/home.html" class="logo"><img src="../homepage/assets/nafas-logo-transparent.png" alt="Nafas" class="logo-image"></a><div class="sidebar-label">THERAPIST SPACE</div><div class="sidebar-bottom"><a href="../loginpage/login.html" class="logout-link">Back to sign in</a></div></aside>
+<main class="main-content"><header class="topbar"><div class="breadcrumb"><span>Therapist Space</span><span class="breadcrumb-separator">/</span><strong>Application</strong></div><span class="portal-badge">Application demo</span></header>
+<div class="portal-container therapist-container"><section class="portal-view" aria-labelledby="application-title"><div class="page-heading"><div><p class="eyebrow">PROFESSIONAL APPLICATION</p><h1 id="application-title">Therapist registration</h1><p class="page-description">Submit professional details for Admin review. Approval is required before the therapist workspace opens.</p></div></div>
+<div class="th-demo-banner" role="note">This is a frontend prototype. Files are not uploaded to a server and credentials are not verified.</div>
+<section class="panel"><form id="therapist-application-form" class="form-grid">
+<div class="form-field"><label for="app-name">Full professional name</label><input id="app-name" name="name" required minlength="2" maxlength="100"></div>
+<div class="form-field"><label for="app-email">Professional email</label><input id="app-email" name="email" type="email" required></div>
+<div class="form-field"><label for="app-title">Professional title</label><input id="app-title" name="title" required maxlength="100" placeholder="e.g. Licensed therapist"></div>
+<div class="form-field"><label for="app-specialty">Specialization</label><input id="app-specialty" name="specialty" required maxlength="120"></div>
+<div class="form-field"><label for="app-qualification">Qualifications</label><input id="app-qualification" name="qualification" required maxlength="200"></div>
+<div class="form-field"><label for="app-license">License or registration number</label><input id="app-license" name="license" required maxlength="120"></div>
+<div class="form-field full-field"><label for="app-experience">Professional experience</label><textarea id="app-experience" name="experience" rows="4" required maxlength="1200"></textarea></div>
+<div class="form-field full-field"><label for="app-document">Supporting document (PDF, JPG, PNG)</label><input id="app-document" name="document" type="file" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" required><small class="field-hint">The selected file name is recorded for this demo; its contents are not uploaded or saved.</small></div>
+<div class="form-actions"><button type="submit" class="primary-button">Submit application</button><p class="form-feedback" id="application-feedback" role="status" aria-live="polite"></p></div>
+</form></section></section></div></main></div><script src="therapist-application.js" defer></script></body></html>

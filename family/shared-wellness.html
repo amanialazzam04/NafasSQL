@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -47,16 +47,19 @@
 
       <div class="portal-container"><section class="portal-view" id="wellness" data-title="Shared Wellness" aria-labelledby="wellness-title">
           <div class="page-heading"><div><p class="eyebrow">ONLY WHAT THEY CHOOSE TO SHARE</p><h1 id="wellness-title">Shared Wellness</h1><p class="page-description">This view is reserved for wellbeing information a Personal User has explicitly chosen to share.</p></div></div>
-          <section class="privacy-banner prominent-banner"><span class="privacy-icon" aria-hidden="true">♡</span><p><strong>Private by default.</strong> Personal journals, journal notes, and AI conversations are never displayed in the Family Portal.</p></section>
-          <section class="panel shared-data-panel"><div class="panel-heading"><div><p class="eyebrow">SHARED WITH YOU</p><h2>Wellbeing updates</h2></div><span class="status-pill">No shared data</span></div>
-            <div class="sharing-summary"><p><strong>Connected person:</strong> None</p><p><strong>Shared categories:</strong> None available</p><p><strong>Last update:</strong> Not available; no shared account is connected</p></div>
-            <div class="empty-state"><span class="empty-state-icon" aria-hidden="true">○</span><h3>Nothing has been shared with this account</h3><p>A Personal User must connect with you and explicitly enable sharing before any of their updates can appear here. This demonstration has no connected accounts.</p><a href="my-loved-ones.html" class="secondary-button view-link">Review connection status</a></div>
+          <section class="privacy-banner prominent-banner"><span class="privacy-icon" aria-hidden="true">♡</span><p><strong>Private by default.</strong> Only selected mood summaries or daily self-care completion counts can appear here. Personal journals, notes, and AI conversations are never displayed in the Family Portal.</p></section>
+          <section class="panel shared-data-panel"><div class="panel-heading"><div><p class="eyebrow">SHARED WITH YOU</p><h2>Wellbeing updates</h2></div><span class="status-pill" id="family-sharing-status">No shared data</span></div>
+            <div class="sharing-summary" id="family-sharing-summary"><p><strong>Connected person:</strong> None</p><p><strong>Shared categories:</strong> None available</p><p><strong>Last update:</strong> Not available; no shared account is connected</p></div>
+            <div class="empty-state" id="family-shared-empty"><span class="empty-state-icon" aria-hidden="true">○</span><h3>Nothing has been shared with this account</h3><p>A Personal User must connect with you and explicitly enable sharing before any of their updates can appear here. This demonstration has no connected accounts.</p><a href="my-loved-ones.html" class="secondary-button view-link">Review connection status</a></div>
+            <div id="family-shared-list"></div>
           </section>
           <p class="field-hint">The dashboard's optional sample trend is illustrative only and is not member data.</p>
         </section></div>
     </main>
   </div>
+<script src="family-access.js" defer></script>
 <script src="shared-wellness.js" defer></script>
+
 <script src="family.js" defer></script>
 </body>
 </html>

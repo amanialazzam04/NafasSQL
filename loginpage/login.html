@@ -7,6 +7,8 @@
     <title>Login | Nafas</title>
 
     <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="../shared/i18n.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -70,6 +72,8 @@
 
             <!-- Login Form -->
             <div class="form-panel">
+
+                <div class="language-switcher page-language-switcher" role="group" aria-label="Select language"><button type="button" data-language-option="ar" lang="ar" aria-label="Switch language to Arabic">العربية</button><span class="language-divider" aria-hidden="true">|</span><button type="button" data-language-option="en" lang="en" aria-label="Switch language to English">English</button></div>
 
                 <div class="form-heading">
 
@@ -199,15 +203,15 @@
                     <div class="demo-icon">i</div>
 
                     <div>
-                        <strong>Frontend demo</strong>
+                        <strong>Demo Accounts</strong>
 
-                        <p>Frontend-only demo sign-in. Accounts are matched to a fixed role; this is not real or secure authentication.</p>
-                        <ul class="demo-accounts">
-                            <li><strong>Personal User</strong><span>user.demo@nafas.local · NafasUser123!</span></li>
-                            <li><strong>Family Member</strong><span>family.demo@nafas.local · NafasFamily123!</span></li>
-                            <li><strong>Therapist</strong><span>therapist.demo@nafas.local · NafasTherapist123!</span></li>
-                            <li><strong>Admin demo</strong><span>admin.demo@nafas.local · NafasAdmin123!</span></li>
-                        </ul>
+                        <p>Choose an account to fill its credentials, then select Sign in. Frontend demo only; this is not secure authentication.</p>
+                        <div class="demo-account-buttons">
+                            <button type="button" data-demo-account="user.demo@nafas.local">Personal User</button>
+                            <button type="button" data-demo-account="family.demo@nafas.local">Family Member</button>
+                            <button type="button" data-demo-account="therapist.demo@nafas.local">Therapist</button>
+                            <button type="button" data-demo-account="admin.demo@nafas.local">Admin</button>
+                        </div>
                     </div>
 
                 </div>
@@ -233,6 +237,8 @@
         </footer>
 
     </main>
+<script src="../shared/translations.js"></script>
+<script src="../shared/i18n.js"></script>
 <script src="login.js"></script>
 
 </body>

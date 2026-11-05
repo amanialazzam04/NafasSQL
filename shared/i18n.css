@@ -1,0 +1,63 @@
+/* Shared language-switcher styling and Arabic presentation foundation. */
+.language-switcher{display:inline-flex;direction:ltr;align-items:center;justify-content:center;gap:7px;flex:0 0 auto;padding:6px 10px;border:1px solid rgba(11,69,109,.14);border-radius:999px;background:rgba(255,255,255,.92);color:#315d76;font:600 12px/1.2 "DM Sans",sans-serif;white-space:nowrap}
+.language-switcher button{padding:3px 2px;border:0;background:transparent;color:inherit;font:inherit;cursor:pointer}
+.language-switcher button[aria-pressed="true"]{color:#087fa8;font-weight:800}
+.language-switcher button:focus-visible{outline:2px solid #0799b5;outline-offset:3px;border-radius:4px}
+.language-switcher .language-divider{color:#9ab1bd;user-select:none}
+.language-switcher [lang="ar"]{font-family:"Tajawal","DM Sans",sans-serif}
+.language-switcher [lang="en"]{font-family:"DM Sans",sans-serif}
+.page-language-switcher{width:max-content;margin:0 0 12px auto}
+html[dir="rtl"] .page-language-switcher{margin-right:auto;margin-left:0}
+html[lang="ar"] body,html[lang="ar"] button,html[lang="ar"] input,html[lang="ar"] textarea,html[lang="ar"] select,html[lang="ar"] h1,html[lang="ar"] h2,html[lang="ar"] h3,html[lang="ar"] h4,html[lang="ar"] p,html[lang="ar"] label,html[lang="ar"] a,html[lang="ar"] small,html[lang="ar"] span,html[lang="ar"] legend{font-family:"Tajawal","DM Sans",sans-serif}
+html[lang="ar"] body{line-height:1.75}
+html[lang="ar"] :is(h1,h2,h3,h4,.eyebrow,.welcome-label,.form-kicker,.role-kicker,.profile-demo-tag,.testimonial-demo-label){letter-spacing:normal}
+html[dir="rtl"] body{direction:rtl;text-align:right}
+html[dir="rtl"] :is(input,textarea,select){text-align:right}
+html[dir="rtl"] input[type="email"],html[dir="rtl"] input[type="password"],html[dir="rtl"] input[type="url"],html[dir="rtl"] input[type="tel"]{direction:ltr;text-align:left;unicode-bidi:plaintext}
+
+/* Keep each page's existing English layout. Adjust only directional details in Arabic. */
+html[dir="rtl"] .navbar{direction:rtl}
+html[dir="rtl"] .nav-link::after{right:0;left:auto}
+html[dir="rtl"] .trust-avatars span{margin-right:-7px;margin-left:0}
+html[dir="rtl"] .trust-avatars span:first-child{margin-right:0}
+html[dir="rtl"] .image-label{right:auto;left:-15px}
+html[dir="rtl"] .note-top,html[dir="rtl"] .note-bottom{right:-22px;left:auto}
+html[dir="rtl"] .inspiration-mark{right:30px;left:auto}
+html[dir="rtl"] .intro-video-scene{direction:ltr}
+html[dir="rtl"] .intro-scene-orb{right:16%;left:auto}
+html[dir="rtl"] .leaf-left{left:13%;right:auto}
+html[dir="rtl"] .leaf-right{right:21%;left:auto}
+html[dir="rtl"] .intro-scene-mark{left:50%;right:auto;transform:translate(-50%,-50%)}
+html[dir="rtl"] .faq-item summary{padding-right:0;padding-left:34px}
+html[dir="rtl"] .faq-item summary::after{right:auto;left:2px}
+html[dir="rtl"] .role-card .role-link span,html[dir="rtl"] .service-card>a span,html[dir="rtl"] .cta-actions .btn span{transform:scaleX(-1)}
+html[dir="rtl"] .role-card:hover .role-link span,html[dir="rtl"] .service-card>a:hover span{transform:scaleX(-1) translateX(4px)}
+html[dir="rtl"] .hero-buttons .btn span,html[dir="rtl"] .navbar .btn span{transform:scaleX(-1)}
+html[dir="rtl"] .hero-scroll{right:6%;left:auto}
+
+html[dir="rtl"] .login-layout,html[dir="rtl"] .register-page{direction:rtl}
+html[dir="rtl"] .heading-brand,html[dir="rtl"] .form-heading,html[dir="rtl"] .welcome-content{direction:rtl}
+html[dir="rtl"] .login-text a{margin-right:4px;margin-left:0}
+html[dir="rtl"] .login-text a:last-child{margin-right:4px}
+html[dir="rtl"] .field-icon{right:14px;left:auto}
+html[dir="rtl"] .input-wrap input{padding-right:43px;padding-left:14px}
+html[dir="rtl"] .show-password{right:auto;left:7px}
+html[dir="rtl"] .remember-label{flex-direction:row}
+html[dir="rtl"] .quote{border-right:3px solid #a8f1e9;border-left:1px solid rgba(255,255,255,.16);border-radius:16px 4px 4px 16px;padding-right:24px;padding-left:22px}
+html[dir="rtl"] .quote-mark{right:auto;left:17px}
+html[dir="rtl"] .decor-one,html[dir="rtl"] .decor-two{right:auto;left:-190px}
+html[dir="rtl"] .decor-two{left:-145px}
+html[dir="rtl"] .password-wrapper input{padding-right:13px;padding-left:65px}
+html[dir="rtl"] .toggle-password{right:auto;left:13px}
+html[dir="rtl"] .login-text a{margin-right:4px;margin-left:0}
+html[dir="rtl"] .terms-option{flex-direction:row}
+html[dir="rtl"] .terms-option input{margin-right:0;margin-left:0}
+
+@media(max-width:760px){
+  .language-switcher{gap:5px;padding:5px 8px;font-size:11px}
+  html[dir="rtl"] .image-label{right:auto;left:2px}
+  html[dir="rtl"] .note-top{right:-4px;left:auto}
+  html[dir="rtl"] .note-bottom{right:-5px;left:auto}
+  html[dir="rtl"] .hero-scroll{right:5%;left:auto}
+}
+@media(prefers-reduced-motion:reduce){.language-switcher *{scroll-behavior:auto}}

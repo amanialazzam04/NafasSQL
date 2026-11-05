@@ -6,18 +6,21 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Allura&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="home.css">
+<link rel="stylesheet" href="../shared/i18n.css">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 <header class="header"><nav class="navbar container" aria-label="Main navigation">
 <a href="#home" class="logo" aria-label="Nafas home"><img src="assets/nafas-logo-transparent.png" alt="Nafas" class="brand-logo"></a>
 <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
 <ul class="nav-links" id="nav-links">
-<li><a class="nav-link active" href="#home">Home</a></li><li><a class="nav-link" href="#about">About</a></li><li><a class="nav-link" href="#services">Services</a></li><li><a class="nav-link" href="#contact">Contact</a></li>
+<li><a class="nav-link active" href="#home">Home</a></li><li><a class="nav-link" href="#about">About</a></li><li><a class="nav-link" href="#how-it-works">How it works</a></li><li><a class="nav-link" href="#services">Services</a></li><li><a class="nav-link" href="#faq">FAQ</a></li><li><a class="nav-link" href="#contact">Contact</a></li>
 <li class="mobile-actions"><a href="../loginpage/login.html" class="btn btn-outline">Login</a><a href="../loginpage/login.html" class="btn btn-primary">Get Started <span>↗</span></a></li></ul>
+<div class="language-switcher" role="group" aria-label="Select language"><button type="button" data-language-option="ar" lang="ar" aria-label="Switch language to Arabic">العربية</button><span class="language-divider" aria-hidden="true">|</span><button type="button" data-language-option="en" lang="en" aria-label="Switch language to English">English</button></div>
 <div class="nav-actions"><a href="../loginpage/login.html" class="btn btn-outline">Login</a><a href="../loginpage/login.html" class="btn btn-primary">Get Started <span>↗</span></a></div>
 </nav></header>
 <main>
-<section class="hero" id="home">
+<section class="hero video-frame-pending" id="home">
 <div class="video-stack" aria-hidden="true">
 <video id="hero-background-video" class="hero-video" autoplay muted playsinline loop preload="auto">
 <source src="https://strvid.nyc3.cdn.digitaloceanspaces.com/motionsite/meditating_video_1.mp4" type="video/mp4">
@@ -35,6 +38,10 @@
 <div class="floating-card breathe-card" aria-hidden="true"><span class="breath-orb"><span></span></span><span><strong>Take a mindful breath</strong><small>One moment at a time</small></span></div>
 <div class="hero-scroll" aria-hidden="true"><span></span> SCROLL TO EXPLORE</div>
 </section>
+<section class="wellness-ribbon" aria-label="Nafas wellness reminders">
+  <p class="visually-hidden">A little space. A mindful pause. Support at your pace. One small step.</p>
+  <div class="wellness-ribbon-track" aria-hidden="true"><span>A LITTLE SPACE</span><i>✦</i><span>A MINDFUL PAUSE</span><i>✧</i><span>SUPPORT AT YOUR PACE</span><i>♡</i><span>ONE SMALL STEP</span><i>✦</i><span>A LITTLE SPACE</span><i>✦</i><span>A MINDFUL PAUSE</span><i>✧</i><span>SUPPORT AT YOUR PACE</span><i>♡</i><span>ONE SMALL STEP</span><i>✦</i></div>
+</section>
 <section class="about section" id="about"><div class="container about-container">
 <div class="about-visual reveal">
   <div class="about-image"><img src="assets/nafas-about-journaling.png" alt="A young man reflecting and writing in his journal beside a quiet lake" loading="lazy">
@@ -43,24 +50,103 @@
   <div class="about-note note-top"><span class="note-icon">✦</span><span><strong>A moment for you</strong><small>Pause. Breathe. Reflect.</small></span></div>
   <div class="about-note note-bottom"><span class="note-icon">↗</span><span><strong>Small steps count</strong><small>Move at your own pace.</small></span></div>
 </div>
-<div class="about-content reveal"><p class="eyebrow"><span class="about-eyebrow-line"></span> ABOUT NAFAS</p><h2>You don't have to figure everything out <span>alone.</span></h2><p class="about-lead">Some days, you just need a little space to understand what you're feeling. Nafas is here to help you pause, reflect, and find your next small step.</p>
+<div class="about-content reveal"><p class="eyebrow"><span class="about-eyebrow-line"></span> ABOUT NAFAS</p><h2>You don't have to go through it <span>alone.</span></h2><p class="about-lead">Nafas brings together mental wellness resources to help you understand what you're feeling, explore support, and take small steps toward wellbeing at your own pace.</p>
   <div class="about-values">
     <article class="about-value reveal"><span class="value-icon">♡</span><div><h3>A safe space</h3><p>Express your thoughts and feelings without judgment.</p></div></article>
     <article class="about-value reveal"><span class="value-icon">✧</span><div><h3>Tools for everyday wellbeing</h3><p>Explore mood reflection and simple practices that fit your day.</p></div></article>
     <article class="about-value reveal"><span class="value-icon">☼</span><div><h3>Support at your pace</h3><p>Take things one step at a time, in a way that feels right for you.</p></div></article>
   </div>
+  <div class="about-actions"><a href="#services" class="btn btn-primary about-cta">Explore Support</a><a href="../loginpage/login.html" class="btn btn-outline">Get Started</a></div>
 </div>
 </div></section>
+<section class="how-it-works section" id="how-it-works"><div class="container">
+<div class="section-heading reveal"><p class="eyebrow">A GENTLE PLACE TO BEGIN</p><h2>How Nafas <span>works.</span></h2><p>Start with what feels manageable. Explore these options in any order and at your own pace.</p></div>
+<div class="steps-grid">
+<article class="step-card reveal"><span class="step-icon" aria-hidden="true">01</span><h3>Share How You Feel</h3><p>Pause and put a few words to what's on your mind in the available reflection tools.</p></article>
+<article class="step-card reveal"><span class="step-icon" aria-hidden="true">02</span><h3>Explore Your Support</h3><p>Look through Nafas tools for reflection, daily wellness, and support options.</p></article>
+<article class="step-card reveal"><span class="step-icon" aria-hidden="true">03</span><h3>Take Small Steps</h3><p>Choose a simple wellbeing activity that feels possible for you today.</p></article>
+</div></div></section>
+<section class="intro-video-section section" id="nafas-introduction" aria-labelledby="intro-video-title">
+  <div class="container intro-video-layout">
+    <div class="intro-video-copy reveal">
+      <p class="eyebrow">A SHORT INTRODUCTION</p>
+      <h2 id="intro-video-title">Meet Nafas, <span>at your own pace.</span></h2>
+      <p>Get to know the supportive tools and resources available in this demonstration. An introduction video will be added when a Nafas video is available.</p>
+      <a class="btn btn-primary" href="#services">Explore the support features <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="intro-video-placeholder reveal" role="img" aria-label="Nafas introduction video placeholder. No video is available yet.">
+      <div class="intro-video-scene" aria-hidden="true"><span class="intro-scene-orb"></span><span class="intro-scene-horizon"></span><span class="intro-scene-leaf leaf-left"></span><span class="intro-scene-leaf leaf-right"></span><span class="intro-scene-mark">N</span></div>
+      <div class="intro-video-caption"><span class="placeholder-play" aria-hidden="true">▶</span><span><strong>Introduction video placeholder</strong><small>Demo preview · video not yet available</small></span></div>
+    </div>
+  </div>
+</section>
 <section class="services section" id="services"><div class="container">
-<div class="section-heading reveal"><p class="eyebrow">HOW NAFAS SUPPORTS YOU</p><h2>Support for every <span>step.</span></h2><p>Find practical tools to understand your feelings, care for your mood, and get support when you need it.</p></div>
+<div class="section-heading reveal"><p class="eyebrow">EXPLORE OUR SUPPORT FEATURES</p><h2>Support for every <span>step.</span></h2><p>Explore the tools currently available in Nafas. Some are demonstrations and explain their limits on the page.</p></div>
 <div class="services-grid">
-<article class="service-card reveal"><div class="service-top"><span class="service-icon">♡</span><span class="card-number">01</span></div><h3>AI Emotional Support</h3><p>Share what is on your mind and receive gentle, supportive guidance in a private-feeling space.</p><a href="../personal/ai-support.html">Explore support <span>→</span></a></article>
-<article class="service-card reveal"><div class="service-top"><span class="service-icon">☼</span><span class="card-number">02</span></div><h3>Mood &amp; Wellness</h3><p>Track your mood, notice patterns over time, and build small habits that support your wellbeing.</p><a href="../personal/wellness.html">Explore wellness <span>→</span></a></article>
-<article class="service-card reveal"><div class="service-top"><span class="service-icon">✧</span><span class="card-number">03</span></div><h3>Support Sessions</h3><p>Learn about support sessions and options for connecting with professional help.</p><a href="../personal/session.html">Learn more <span>→</span></a></article>
-<article class="service-card reveal"><div class="service-top"><span class="service-icon">⌂</span><span class="card-number">04</span></div><h3>Your Personal Space</h3><p>Sign in to continue your personal wellbeing journey and access your tools.</p><a href="../loginpage/login.html">Get started <span>→</span></a></article>
+<article class="service-card reveal" role="link" tabindex="0"><div class="service-top"><span class="service-icon" aria-hidden="true">&#9825;</span><span class="card-number">01</span></div><h3>AI Support</h3><p>Try the conversational support demo. Its replies are simulated, not generated by a connected AI model.</p><a href="../loginpage/login.html">Explore support <span>&#8594;</span></a></article>
+<article class="service-card reveal" role="link" tabindex="0"><div class="service-top"><span class="service-icon" aria-hidden="true">&#9788;</span><span class="card-number">02</span></div><h3>Mood Tracker</h3><p>Choose a mood for a check-in, add a short reflection, and explore gentle daily wellness activities.</p><a href="../loginpage/login.html">Explore wellness <span>&#8594;</span></a></article>
+<article class="service-card reveal" role="link" tabindex="0"><div class="service-top"><span class="service-icon" aria-hidden="true">&#10022;</span><span class="card-number">03</span></div><h3>Daily Journal</h3><p>Use the Daily Wellness reflection field to write a few words during your check-in. The demo does not save the entry.</p><a href="../loginpage/login.html">Write a reflection <span>&#8594;</span></a></article>
+<article class="service-card reveal" role="link" tabindex="0"><div class="service-top"><span class="service-icon" aria-hidden="true">&#9673;</span><span class="card-number">04</span></div><h3>Therapist Sessions</h3><p>Explore sample therapist profiles and prepare a session request. The demo does not send or confirm requests.</p><a href="../loginpage/login.html">Explore sessions <span>&#8594;</span></a></article>
+<article class="service-card reveal" role="link" tabindex="0"><div class="service-top"><span class="service-icon" aria-hidden="true">&#9829;</span><span class="card-number">05</span></div><h3>Family Support</h3><p>Find general guidance and learn how optional, consent-based connection can work. A Personal User can choose what to share.</p><a href="../loginpage/login.html">Explore family support <span>&#8594;</span></a></article>
 </div></div></section>
 
-<section class="cta"><div class="container cta-content reveal"><p class="eyebrow">ONE SMALL STEP CAN MATTER</p><h2>You don't have to face every feeling alone.</h2><p>Explore supportive tools for your mood, feelings, and everyday wellbeing.</p><a href="../loginpage/login.html" class="btn btn-light">Start Your Journey <span>→</span></a></div></section>
+<section class="wellness-inspiration section" id="wellness-inspiration"><div class="container">
+  <div class="section-heading reveal"><p class="eyebrow">A GENTLE PAUSE</p><h2>A little room for <span>today.</span></h2><p>Small, optional ideas for making space for yourself. Choose what feels comfortable.</p></div>
+  <div class="inspiration-layout">
+    <div class="inspiration-note reveal"><span class="inspiration-mark" aria-hidden="true">✦</span><p class="inspiration-quote">“You can take one moment at a time.”</p><span class="inspiration-caption">A gentle reminder from Nafas</span><span class="inspiration-wash" aria-hidden="true"></span></div>
+    <div class="inspiration-tips">
+      <article class="inspiration-tip reveal"><span class="tip-number">01</span><div><h3>Pause and notice</h3><p>Take a moment to notice one thing you can see, hear, or feel around you.</p></div></article>
+      <article class="inspiration-tip reveal"><span class="tip-number">02</span><div><h3>Make room to breathe</h3><p>If it feels comfortable, let your next few breaths be slow and unhurried.</p></div></article>
+      <article class="inspiration-tip reveal"><span class="tip-number">03</span><div><h3>Reach out in your own way</h3><p>Consider sharing how you feel with someone you trust, when you feel ready.</p></div></article>
+    </div>
+  </div>
+</div></section>
+
+<section class="role-choice section" id="choose-your-role"><div class="container">
+  <div class="section-heading reveal"><p class="eyebrow">A PLACE FOR DIFFERENT KINDS OF SUPPORT</p><h2>Choose your <span>way in.</span></h2><p>Continue to the existing Nafas login page to explore the available role options.</p></div>
+  <div class="role-grid">
+    <a class="role-card reveal" href="../loginpage/login.html"><span class="role-symbol" aria-hidden="true">♡</span><span class="role-kicker">FOR YOURSELF</span><h3>Personal User</h3><p>Explore personal wellness tools and supportive resources.</p><span class="role-link">Continue <span aria-hidden="true">→</span></span></a>
+    <a class="role-card reveal" href="../loginpage/login.html"><span class="role-symbol" aria-hidden="true">✧</span><span class="role-kicker">FOR SOMEONE YOU CARE ABOUT</span><h3>Family Member</h3><p>Find general guidance and learn about optional connection.</p><span class="role-link">Continue <span aria-hidden="true">→</span></span></a>
+    <a class="role-card reveal" href="../loginpage/login.html"><span class="role-symbol" aria-hidden="true">◷</span><span class="role-kicker">FOR PROFESSIONALS</span><h3>Therapist</h3><p>Explore the therapist experience in this frontend demonstration.</p><span class="role-link">Continue <span aria-hidden="true">→</span></span></a>
+  </div>
+</div></section>
+
+<section class="featured-therapists section" id="featured-therapists"><div class="container">
+  <div class="section-heading reveal"><p class="eyebrow">THERAPIST DIRECTORY PREVIEW</p><h2>Meet supportive professionals.</h2><p>These reusable profile cards are demo placeholders. No real therapist profiles or placements are shown.</p></div>
+  <div class="therapist-grid" aria-label="Demo therapist profile placeholders">
+    <article class="therapist-preview-card reveal" data-therapist-card data-profile-status="demo-placeholder">
+      <div class="therapist-preview-art" role="img" aria-label="Therapist photo placeholder"><span aria-hidden="true">○</span><small>Photo placeholder</small></div>
+      <div class="therapist-preview-body"><span class="profile-demo-tag">DEMO PROFILE PLACEHOLDER</span><h3 data-therapist-field="displayName">Therapist name placeholder</h3><p class="therapist-specialty" data-therapist-field="specialization">Specialization placeholder</p><span class="placement-preview-tag" data-therapist-field="placementLabel">Sponsored / Featured label preview</span><p class="therapist-demo-note">No real professional, credentials, availability, or paid placement is represented.</p></div>
+    </article>
+    <article class="therapist-preview-card reveal" data-therapist-card data-profile-status="demo-placeholder">
+      <div class="therapist-preview-art therapist-art-blue" role="img" aria-label="Therapist photo placeholder"><span aria-hidden="true">○</span><small>Photo placeholder</small></div>
+      <div class="therapist-preview-body"><span class="profile-demo-tag">DEMO PROFILE PLACEHOLDER</span><h3 data-therapist-field="displayName">Therapist name placeholder</h3><p class="therapist-specialty" data-therapist-field="specialization">Specialization placeholder</p><span class="organic-preview-tag" data-therapist-field="placementLabel">Organic listing label preview</span><p class="therapist-demo-note">No real professional, credentials, availability, or listing is represented.</p></div>
+    </article>
+    <article class="therapist-preview-card reveal" data-therapist-card data-profile-status="demo-placeholder">
+      <div class="therapist-preview-art therapist-art-sage" role="img" aria-label="Therapist photo placeholder"><span aria-hidden="true">○</span><small>Photo placeholder</small></div>
+      <div class="therapist-preview-body"><span class="profile-demo-tag">DEMO PROFILE PLACEHOLDER</span><h3 data-therapist-field="displayName">Therapist name placeholder</h3><p class="therapist-specialty" data-therapist-field="specialization">Specialization placeholder</p><span class="organic-preview-tag" data-therapist-field="placementLabel">Organic listing label preview</span><p class="therapist-demo-note">No real professional, credentials, availability, or listing is represented.</p></div>
+    </article>
+  </div>
+  <p class="directory-disclosure reveal">Featured placement is a visibility label only; it does not indicate greater qualifications or clinical quality.</p>
+</div></section>
+
+<section class="testimonials section" id="testimonials"><div class="container">
+  <div class="section-heading reveal"><p class="eyebrow">WORDS, WHEN THEY ARE READY</p><h2>Stories belong to the people who share them.</h2><p>No user testimonials are available for this demonstration.</p></div>
+  <div class="testimonial-grid">
+    <article class="testimonial-placeholder reveal"><span class="testimonial-quote-mark" aria-hidden="true">“</span><p>Placeholder for a future testimonial shared with permission.</p><span class="testimonial-demo-label">DEMO PLACEHOLDER · NOT USER FEEDBACK</span></article>
+    <article class="testimonial-placeholder reveal"><span class="testimonial-quote-mark" aria-hidden="true">“</span><p>Placeholder for a future testimonial shared with permission.</p><span class="testimonial-demo-label">DEMO PLACEHOLDER · NOT USER FEEDBACK</span></article>
+  </div>
+</div></section>
+
+<section class="faq section" id="faq"><div class="container faq-container">
+<div class="section-heading reveal"><p class="eyebrow">A FEW HELPFUL DETAILS</p><h2>Frequently asked <span>questions.</span></h2><p>Learn what to expect as you explore the Nafas demonstration.</p></div>
+<div class="faq-list reveal">
+<details class="faq-item"><summary>What is Nafas?</summary><p>Nafas is a mental wellness project with reflection tools and supportive resources. Some features are demonstrations rather than live services.</p></details>
+<details class="faq-item"><summary>What support features are available?</summary><p>You can explore a simulated AI Support chat, Daily Wellness mood check-ins and activities, a reflection field, and sample therapist session options.</p></details>
+<details class="faq-item"><summary>How is personal information handled?</summary><p>Each feature explains its behavior on its own page. The AI Support conversation and Daily Wellness check-in are not saved, and session requests are only prepared for the demo. Review each page's notice before sharing personal information.</p></details>
+<details class="faq-item"><summary>How can I explore the available support options?</summary><p>Use the service cards above to open the relevant Nafas page. You can also choose Get Started to visit the existing login page.</p></details>
+</div></div></section>
+<section class="cta"><div class="container cta-content reveal"><p class="eyebrow">ONE SMALL STEP CAN MATTER</p><h2>You don't have to face every feeling alone.</h2><p>Explore supportive tools for your mood, feelings, and everyday wellbeing.</p><div class="cta-actions"><a href="#services" class="btn btn-light">Explore Support <span>&#8594;</span></a><a href="../loginpage/login.html" class="btn btn-cta-outline">Get Started</a></div></div></section>
 
 </main>
 <footer class="footer" id="contact">
@@ -76,5 +162,7 @@
   </div>
   <div class="container footer-bottom reveal"><span>© <span id="year"></span> Nafas. All rights reserved.</span><span>Made with care for your wellbeing.</span></div>
 </footer>
+<script src="../shared/translations.js"></script>
+<script src="../shared/i18n.js"></script>
 <script src="home.js"></script>
 </body></html>

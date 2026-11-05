@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f9fa">
+  <title>Daily Journal | Nafas</title>
+  <link rel="stylesheet" href="wellness.css">
+  <link rel="stylesheet" href="personal-ui.css">
+  <style>
+    .journal-entry-form { display: grid; gap: 14px; }
+    .journal-entry-form label { display: grid; gap: 6px; color: var(--primary-dark); font-size: 12px; font-weight: 700; }
+    .journal-entry-form input, .journal-entry-form textarea { width: 100%; padding: 12px 13px; border: 1px solid var(--border); border-radius: 7px; color: var(--text); background: #fff; font: inherit; }
+    .journal-entry-form textarea { min-height: 150px; resize: vertical; line-height: 1.7; }
+    .journal-entry-card { padding: 17px; margin-top: 12px; border: 1px solid var(--border); border-radius: 8px; background: #fff; overflow-wrap: anywhere; }
+    .journal-entry-card h3 { margin: 3px 0 7px; font-size: 15px; }
+    .journal-entry-date { color: var(--muted); font-size: 11px; }
+    .journal-entry-copy { margin-top: 8px; white-space: pre-wrap; line-height: 1.75; }
+    .journal-entry-actions { display: flex; justify-content: flex-end; margin-top: 12px; }
+    .journal-delete { padding: 7px 11px; border: 1px solid #eddfdf; border-radius: 6px; color: var(--danger); background: white; cursor: pointer; font-size: 11px; }
+    .journal-privacy-note { padding: 12px 14px; border-left: 3px solid #a9d9e2; background: #f5fafb; color: #6d828b; font-size: 11px; line-height: 1.75; }
+    .journal-empty { padding: 20px; border: 1px dashed #cfe3ed; border-radius: 8px; color: var(--muted); text-align: center; }
+  </style>
+</head>
+<body class="personal-portal personal-portal--horizontal">
+  <div class="wellness-layout">
+    <aside class="sidebar">
+      <a href="dashbord.html" class="brand" aria-label="Nafas home"><img src="../homepage/assets/nafas-logo-transparent.png" alt="Nafas" class="logo-image"></a>
+
+      <p class="sidebar-label">PERSONAL SPACE</p>
+      <nav class="sidebar-nav" aria-label="Main navigation">
+        <a href="dashbord.html" class="nav-link"><span class="nav-icon">&#8962;</span> Dashboard</a>
+        <a href="ai-support.html" class="nav-link"><span class="nav-icon">&#10047;</span> AI Support <span class="nav-badge">AI</span></a>
+        <a href="wellness.html" class="nav-link"><span class="nav-icon">&#9788;</span> Daily Wellness</a>
+        <a href="journal.html" class="nav-link active" aria-current="page"><span class="nav-icon">&#9998;</span> Daily Journal</a>
+        <a href="session.html" class="nav-link"><span class="nav-icon">&#9673;</span> Sessions &amp; Support</a>
+        <a href="profile.html" class="nav-link"><span class="nav-icon">&#9711;</span> My Profile</a>
+      </nav>
+      <div class="sidebar-note"><strong>A gentle reminder</strong><p>Your journal belongs to you. Family members cannot view these entries.</p></div>
+    </aside>
+    <main class="wellness-main">
+      <header class="page-header"><div><p class="eyebrow">A PRIVATE SPACE FOR YOU</p><h1>Daily Journal</h1><p class="page-subtitle">Write what feels useful, at your own pace.</p></div><div class="date-pill">Your words stay yours</div></header>
+      <section class="wellness-banner"><div class="banner-content"><h2>Make room for your thoughts</h2><p>There is no right way to journal. A few words are enough, and you can leave anything blank that does not feel right to share with yourself.</p></div><div class="banner-decoration" aria-hidden="true">&#10047;</div></section>
+      <div class="wellness-grid">
+        <div class="wellness-column">
+          <section class="wellness-card">
+            <div class="section-heading"><div><h2>Write a journal entry</h2><p>This journal is separate from Family sharing.</p></div><span class="section-icon" aria-hidden="true">&#9998;</span></div>
+            <form id="journal-entry-form" class="journal-entry-form">
+              <label for="journal-date">Date<input id="journal-date" type="date" required></label>
+              <label for="journal-title">Title <span class="field-hint">Optional</span><input id="journal-title" type="text" maxlength="100" placeholder="A thought, moment, or theme"></label>
+              <label for="journal-content">Your entry<textarea id="journal-content" maxlength="5000" required placeholder="Start wherever you are..."></textarea></label>
+              <p class="field-hint"><span id="journal-count">0</span>/5000 characters</p>
+              <button type="submit" class="save-mood-button">Save entry on this device</button>
+              <p id="journal-feedback" class="feedback-message" role="status" aria-live="polite"></p>
+            </form>
+          </section>
+          <section class="wellness-card">
+            <div class="section-heading"><div><h2>Previous entries</h2><p id="journal-entry-count">No entries saved yet.</p></div></div>
+            <div id="journal-entry-list"><div class="journal-empty">Your saved entries will appear here.</div></div>
+          </section>
+        </div>
+        <aside class="wellness-column secondary-column">
+          <section class="wellness-card"><div class="section-heading"><div><h2>Privacy in this prototype</h2><p>Your journal is private to your Personal User account experience.</p></div></div><p class="journal-privacy-note">Entries are stored in this browser's local storage. This is not encrypted or secure storage. Family members cannot access them through the Family Portal, and journal text is never copied into sharing summaries.</p></section>
+          <section class="wellness-card"><div class="section-heading"><div><h2>A small prompt</h2><p>If it helps, try one of these:</p></div></div><ul class="tips-list"><li class="tip-item"><span class="tip-dot">&#8226;</span><div><h3>What felt important today?</h3></div></li><li class="tip-item"><span class="tip-dot">&#8226;</span><div><h3>What would I like to remember?</h3></div></li><li class="tip-item"><span class="tip-dot">&#8226;</span><div><h3>What do I need right now?</h3></div></li></ul></section>
+        </aside>
+      </div>
+      <footer class="wellness-footer"><p>Nafas &middot; Your wellbeing matters.</p></footer>
+    </main>
+  </div>
+  <script src="personal-access.js" defer></script>
+  <script src="journal.js" defer></script>
+</body>
+</html>

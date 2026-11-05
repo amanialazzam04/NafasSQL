@@ -29,13 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         passwordInput.type = showPassword ? "text" : "password";
 
-        togglePasswordButton.textContent =
-            showPassword ? "Hide" : "Show";
-
-        togglePasswordButton.setAttribute(
-            "aria-label",
-            showPassword ? "Hide password" : "Show password"
-        );
+        updatePasswordToggleLabel();
 
         togglePasswordButton.setAttribute(
             "aria-pressed",
@@ -43,13 +37,17 @@ document.addEventListener("DOMContentLoaded", function () {
         );
     });
 
+    function updatePasswordToggleLabel() {
+        const showPassword = passwordInput.type === "password";
+        NafasI18n.setText(togglePasswordButton, showPassword ? "common.show" : "common.hide");
+        NafasI18n.setAttribute(togglePasswordButton, "aria-label", showPassword ? "login.password.showLabel" : "login.password.hideLabel");
+    }
+    document.addEventListener("nafas:languagechange", updatePasswordToggleLabel);
+    updatePasswordToggleLabel();
+
     // Clear previous errors
     function clearErrors() {
-        nameError.textContent = "";
-        emailError.textContent = "";
-        passwordError.textContent = "";
-        confirmPasswordError.textContent = "";
-        termsError.textContent = "";
+        [nameError, emailError, passwordError, confirmPasswordError, termsError].forEach(NafasI18n.clearText);
 
         [
             nameInput,
@@ -60,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
             input.removeAttribute("aria-invalid");
         });
 
-        formMessage.textContent = "";
+        NafasI18n.clearText(formMessage);
         formMessage.className = "form-message";
     }
 
@@ -70,8 +68,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Display a general message
-    function showMessage(message, type) {
-        formMessage.textContent = message;
+    function showMessage(message, type, values) {
+        NafasI18n.setText(formMessage, message, values);
         formMessage.className = "form-message " + type;
     }
 
@@ -93,8 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Validate name
         if (fullName.length < 2) {
-            nameError.textContent =
-                "Please enter your full name.";
+            NafasI18n.setText(nameError, "register.nameRequired");
 
             nameInput.setAttribute("aria-invalid", "true");
             isValid = false;
@@ -102,34 +99,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Validate email
         if (email === "") {
-            emailError.textContent =
-                "Please enter your email address.";
+            NafasI18n.setText(emailError, "register.emailRequired");
 
             emailInput.setAttribute("aria-invalid", "true");
             isValid = false;
         } else if (!validateEmail(email)) {
-            emailError.textContent =
-                "Please enter a valid email address.";
+            NafasI18n.setText(emailError, "register.emailInvalid");
 
             emailInput.setAttribute("aria-invalid", "true");
             isValid = false;
         } else if (!normalizedEmail.endsWith("@nafas.local")) {
-            emailError.textContent =
-                "Use a fictional test email ending in @nafas.local.";
+            NafasI18n.setText(emailError, "register.emailDomain");
 
             emailInput.setAttribute("aria-invalid", "true");
             isValid = false;
         }
 
         if (!selectedAccountType) {
-            showMessage("Choose a portal role for this local demo account.", "error");
+            showMessage("register.roleRequired", "error");
             isValid = false;
         }
 
         // Validate password
         if (password.length < 8) {
-            passwordError.textContent =
-                "Password must be at least 8 characters.";
+            NafasI18n.setText(passwordError, "register.passwordShort");
 
             passwordInput.setAttribute("aria-invalid", "true");
             isValid = false;
@@ -137,8 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Confirm password
         if (confirmPassword === "") {
-            confirmPasswordError.textContent =
-                "Please confirm your password.";
+            NafasI18n.setText(confirmPasswordError, "register.confirmRequired");
 
             confirmPasswordInput.setAttribute(
                 "aria-invalid",
@@ -147,8 +139,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             isValid = false;
         } else if (password !== confirmPassword) {
-            confirmPasswordError.textContent =
-                "Passwords do not match.";
+            NafasI18n.setText(confirmPasswordError, "register.passwordMismatch");
 
             confirmPasswordInput.setAttribute(
                 "aria-invalid",
@@ -160,8 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Validate terms
         if (!termsCheckbox.checked) {
-            termsError.textContent =
-                "Please agree to the terms to continue.";
+            NafasI18n.setText(termsError, "register.termsRequired");
 
             isValid = false;
         }
@@ -185,7 +175,7 @@ document.addEventListener("DOMContentLoaded", function () {
             "admin.demo@nafas.local"
         ];
         if (predefinedEmails.includes(normalizedEmail)) {
-            emailError.textContent = "That email is reserved for a predefined demo account. Choose another test email.";
+            NafasI18n.setText(emailError, "register.reservedEmail");
             emailInput.setAttribute("aria-invalid", "true");
             emailInput.focus();
             return;
@@ -194,35 +184,63 @@ document.addEventListener("DOMContentLoaded", function () {
         const storageKey = "nafas.frontendDemoAccounts.v1";
         let demoAccounts = {};
         try {
-            demoAccounts = JSON.parse(sessionStorage.getItem(storageKey) || "{}");
-            if (!demoAccounts || typeof demoAccounts !== "object" || Array.isArray(demoAccounts)) {
-                demoAccounts = {};
+            // Keep accounts created before the storage change, then prefer current localStorage entries.
+            try {
+                const legacyAccounts = JSON.parse(sessionStorage.getItem(storageKey) || "{}");
+                if (legacyAccounts && typeof legacyAccounts === "object" && !Array.isArray(legacyAccounts)) {
+                    Object.assign(demoAccounts, legacyAccounts);
+                }
+            } catch (error) {}
+            try {
+                const savedAccounts = JSON.parse(localStorage.getItem(storageKey) || "{}");
+                if (savedAccounts && typeof savedAccounts === "object" && !Array.isArray(savedAccounts)) {
+                    Object.assign(demoAccounts, savedAccounts);
+                }
+            } catch (error) {
+                throw error;
             }
             if (demoAccounts[normalizedEmail]) {
-                emailError.textContent = "A demo account with this email already exists in this tab. Sign in or use another test email.";
+                NafasI18n.setText(emailError, "register.duplicateEmail");
                 emailInput.setAttribute("aria-invalid", "true");
                 emailInput.focus();
                 return;
             }
-            demoAccounts[normalizedEmail] = {
+            const createdAccount = {
+                name: fullName,
                 password: password,
-                role: selectedAccountType.value
+                role: selectedAccountType.value,
+                ...(selectedAccountType.value === "therapist" ? { therapistApplication: { status: "not-submitted", submittedAt: null } } : {})
             };
-            sessionStorage.setItem(storageKey, JSON.stringify(demoAccounts));
+            if (selectedAccountType.value === "user") {
+                const trialStartedAt = new Date();
+                const trialExpiresAt = new Date(trialStartedAt.getTime() + 72 * 60 * 60 * 1000);
+                createdAccount.subscription = {
+                    status: "trial",
+                    plan: "premium",
+                    trialStartedAt: trialStartedAt.toISOString(),
+                    trialExpiresAt: trialExpiresAt.toISOString(),
+                    simulated: true,
+                    priceLabel: "TBD"
+                };
+            }
+            demoAccounts[normalizedEmail] = createdAccount;
+            localStorage.setItem(storageKey, JSON.stringify(demoAccounts));
         } catch (error) {
-            showMessage("This browser blocked temporary storage. Allow session storage or use one of the predefined demo accounts.", "error");
+            showMessage("register.storageUnavailable", "error");
             return;
         }
 
         const roleNames = {
-            user: "Personal User",
-            family: "Family Member",
-            therapist: "Therapist",
-            admin: "Admin demo"
+            user: "register.role.user",
+            family: "register.role.family",
+            therapist: "register.role.therapist",
+            admin: "register.role.admin"
         };
+        const trialNotice = selectedAccountType.value === "user" ? NafasI18n.t("register.trialNotice") : "";
         showMessage(
-            `${roleNames[selectedAccountType.value]} demo account created in this tab only. No server account was created. Go to Sign in to test this portal.`,
-            "success"
+            "register.success",
+            "success",
+            { role: NafasI18n.t(roleNames[selectedAccountType.value]), trialNotice: trialNotice }
         );
     });
 
@@ -244,22 +262,22 @@ document.addEventListener("DOMContentLoaded", function () {
             }[input.id];
 
             if (errorId) {
-                errorId.textContent = "";
+                NafasI18n.clearText(errorId);
             }
 
-            formMessage.textContent = "";
+            NafasI18n.clearText(formMessage);
             formMessage.className = "form-message";
         });
 
     accountTypeInputs.forEach(function (input) {
         input.addEventListener("change", function () {
-            formMessage.textContent = "";
+            NafasI18n.clearText(formMessage);
             formMessage.className = "form-message";
         });
     });
     });
 
     termsCheckbox.addEventListener("change", function () {
-        termsError.textContent = "";
+        NafasI18n.clearText(termsError);
     });
 });

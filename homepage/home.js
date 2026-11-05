@@ -7,23 +7,47 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Mobile navigation
   if (menuToggle && navLinks) {
+    const updateMenuLabel = () => {
+      const open = navLinks.classList.contains("open");
+      NafasI18n.setAttribute(menuToggle, "aria-label", open ? "home.menu.close" : "home.menu.open");
+    };
     menuToggle.addEventListener("click", () => {
       const open = navLinks.classList.toggle("open");
       menuToggle.setAttribute("aria-expanded", String(open));
-      menuToggle.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+      updateMenuLabel();
       menuToggle.textContent = open ? "✕" : "☰";
     });
     navLinks.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
       navLinks.classList.remove("open");
       menuToggle.setAttribute("aria-expanded", "false");
-      menuToggle.setAttribute("aria-label", "Open navigation");
+      updateMenuLabel();
       menuToggle.textContent = "☰";
     }));
+    document.addEventListener("nafas:languagechange", updateMenuLabel);
+    updateMenuLabel();
   }
   navItems.forEach(link => link.addEventListener("click", () => {
     navItems.forEach(item => item.classList.remove("active"));
     link.classList.add("active");
   }));
+
+  // Service cards are public entry points; open Login only after activation.
+  document.querySelectorAll(".service-card").forEach(card => {
+    const openLogin = () => { window.location.href = "../loginpage/login.html"; };
+
+    card.addEventListener("click", event => {
+      if (event.target.closest("a")) return;
+      openLogin();
+    });
+
+    card.addEventListener("keydown", event => {
+      if (event.target.closest("a")) return;
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openLogin();
+      }
+    });
+  });
 
   // Smooth in-page navigation with a reliable offset for the floating navbar.
   // This keeps the About heading visible below the fixed header.
@@ -55,58 +79,62 @@ document.addEventListener("DOMContentLoaded", () => {
     revealItems.forEach(item => observer.observe(item));
   }
 
-  // Use one background video. Native looping follows the source file's own edit;
-  // CSS cannot remove a discontinuity that is encoded at the clip boundary.
+  // Keep playback declarative in the video element, and resume from canplay
+  // if the browser paused or throttled this background video while hidden.
   const heroVideo = document.getElementById("hero-background-video");
   if (heroVideo) {
     const hero = document.querySelector(".hero");
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    heroVideo.muted = true;
-    heroVideo.playsInline = true;
-    heroVideo.loop = true;
     let playRequest = null;
+    let frameReady = false;
+
+    // Keep the gradient visible and decorative motion paused until the browser
+    // has presented the video's first frame.
+    hero?.classList.add("video-frame-pending");
+
+    const markFrameReady = () => {
+      if (frameReady) return;
+      frameReady = true;
+      hero?.classList.add("video-frame-ready");
+      hero?.classList.remove("video-frame-pending");
+    };
+
+    if (typeof heroVideo.requestVideoFrameCallback === "function") {
+      heroVideo.requestVideoFrameCallback(() => markFrameReady());
+    } else {
+      // loadeddata means the first frame is available; wait for a paint turn
+      // before revealing it on browsers without requestVideoFrameCallback.
+      const revealAvailableFrame = () => requestAnimationFrame(() => markFrameReady());
+      if (heroVideo.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
+        revealAvailableFrame();
+      } else {
+        heroVideo.addEventListener("loadeddata", revealAvailableFrame, { once: true });
+      }
+    }
 
     const setFallback = () => {
-      hero?.classList.remove("video-ready");
       hero?.classList.add("video-unavailable");
+      hero?.classList.remove("video-frame-pending");
     };
 
     const playVideo = () => {
-      if (reducedMotion.matches) {
-        heroVideo.pause();
-        hero?.classList.add("video-motion-reduced");
-        setFallback();
-        return;
-      }
-      hero?.classList.remove("video-motion-reduced");
-      if (heroVideo.readyState < HTMLMediaElement.HAVE_CURRENT_DATA || !heroVideo.paused || playRequest) return;
+      if (!heroVideo.paused || playRequest) return;
       playRequest = heroVideo.play();
       if (playRequest && typeof playRequest.then === "function") {
-        playRequest.then(() => {
-          hero?.classList.add("video-ready");
-          hero?.classList.remove("video-unavailable");
-        }).catch(setFallback).finally(() => { playRequest = null; });
+        playRequest.then(() => hero?.classList.remove("video-unavailable"))
+          .catch(setFallback)
+          .finally(() => { playRequest = null; });
       } else {
-        hero?.classList.add("video-ready");
         hero?.classList.remove("video-unavailable");
         playRequest = null;
       }
     };
 
-    if (reducedMotion.matches) {
-      hero?.classList.add("video-motion-reduced");
-      setFallback();
-    } else if (heroVideo.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
-      playVideo();
-    } else {
-      heroVideo.addEventListener("canplay", playVideo, { once: true });
-    }
+    heroVideo.addEventListener("canplay", playVideo);
     heroVideo.addEventListener("error", setFallback);
-    reducedMotion.addEventListener?.("change", playVideo);
     document.addEventListener("visibilitychange", () => {
-      if (document.hidden) heroVideo.pause();
-      else playVideo();
+      if (!document.hidden) playVideo();
     });
+    playVideo();
   }
 
 });

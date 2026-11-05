@@ -1,3 +1,7 @@
 @import url("../family/family.css");
 @import url("admin.css");
+.admin-record-card { display: grid; grid-template-columns: minmax(140px, 1fr) minmax(170px, 1fr) minmax(170px, 1fr) auto; align-items: center; gap: 8px 14px; padding: 14px 16px; margin: 10px 0; border: 1px solid var(--border); border-radius: 12px; background: #fff; }
+.admin-record-card h3 { font: 700 14px/1.4 "Manrope", sans-serif; }
+.admin-record-card p { color: var(--muted); overflow-wrap: anywhere; }
+@media (max-width: 800px) { .admin-record-card { grid-template-columns: 1fr; } }
 

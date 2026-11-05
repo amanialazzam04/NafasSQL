@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -20,6 +20,7 @@
         <a href="user-management.html" class="nav-link"><span class="nav-icon">♙</span><span>User Management</span></a>
         <a href="therapist-management.html" class="nav-link active" aria-current="page"><span class="nav-icon">✚</span><span>Therapist Management</span></a>
         <a href="family-connections.html" class="nav-link"><span class="nav-icon">♡</span><span>Family &amp; Connections</span></a>
+        <a href="safety-alerts.html" class="nav-link"><span class="nav-icon">!</span><span>Safety &amp; Alerts</span></a>
         <a href="sessions-consultations.html" class="nav-link"><span class="nav-icon">◷</span><span>Sessions &amp; Consultations</span></a>
         <a href="content-management.html" class="nav-link"><span class="nav-icon">▤</span><span>Content Management</span></a>
         <a href="reports-analytics.html" class="nav-link"><span class="nav-icon">⌁</span><span>Reports &amp; Analytics</span></a>
@@ -40,12 +41,14 @@
         <div class="topbar-actions"><span class="portal-badge"><span class="status-dot muted-dot"></span> Admin Portal · Demo</span></div>
       </header>
       <div class="portal-container"><section class="portal-view" id="therapists" data-title="Therapist Management" aria-labelledby="therapists-title">
-          <div class="page-heading"><div><p class="eyebrow">PROVIDER DIRECTORY</p><h1 id="therapists-title" tabindex="-1">Therapist Management</h1><p class="page-description">Provider profiles, credentials, and verification decisions require a connected administrative service.</p></div></div>
-          <section class="panel"><div class="panel-heading"><div><p class="eyebrow">THERAPIST PROFILES</p><h2>Provider directory</h2></div><span class="panel-icon">✚</span></div><div class="empty-state"><span class="empty-state-icon">○</span><h3>No therapist records connected</h3><p>This prototype has no provider accounts or credentials to review.</p></div></section>
-          <section class="panel"><div class="panel-heading"><div><p class="eyebrow">CREDENTIALS &amp; APPROVALS</p><h2>Verification queue</h2></div></div><div class="empty-state compact-empty"><h3>No verification requests available</h3><p>No credentials are represented as checked, approved, or pending here.</p></div></section>
+          <div class="page-heading"><div><p class="eyebrow">PROVIDER DIRECTORY</p><h1 id="therapists-title" tabindex="-1">Therapist Management</h1><p class="page-description">Review therapist applications created in this browser demo. Approval here does not verify professional credentials.</p></div></div>
+          <div class="th-demo-banner" role="note">Frontend demo review queue. Application details and decisions stay in this browser only. Uploaded documents are not available to review and credentials are not verified.</div>
+          <section class="panel"><div class="panel-heading"><div><p class="eyebrow">APPLICATIONS</p><h2>Therapist application review</h2></div><span class="panel-icon">✚</span></div><div id="therapist-application-queue" aria-live="polite"></div></section>
+          <section class="panel promotion-admin-panel"><div class="panel-heading"><div><p class="eyebrow">SEPARATE FROM CREDENTIAL REVIEW</p><h2>Featured promotion management</h2><p class="field-hint">Only approved therapists with directory consent are eligible. Placement is simulated, clearly sponsored, and does not represent clinical ranking.</p></div></div><div id="therapist-promotion-queue" aria-live="polite"></div></section>
         </section></div>
     </main>
   </div>
+<script src="admin-access.js" defer></script>
 <script src="admin.js" defer></script>
 <script src="therapist-management.js" defer></script>
 </body>

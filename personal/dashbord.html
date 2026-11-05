@@ -1,4 +1,4 @@
-
+﻿
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,11 +7,12 @@
     <meta name="theme-color" content="#f6fcff">
     <title>Personal Dashboard | Nafas</title>
     <link rel="stylesheet" href="dashbord.css">
+    <link rel="stylesheet" href="personal-ui.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="personal-portal personal-portal--drawer">
 
 <div class="app-layout">
 
@@ -20,24 +21,15 @@
             <img src="../homepage/assets/nafas-logo-transparent.png" alt="Nafas Logo" class="logo-image">
         </a>
 
-        <div class="sidebar-label">PERSONAL SPACE</div>
+        <p class="sidebar-label">PERSONAL SPACE</p>
 
-        <nav class="sidebar-nav" aria-label="Main navigation">
-            <a href="dashbord.html" class="nav-link active" aria-current="page">
-                <span class="nav-icon">⌂</span><span>Dashboard</span>
-            </a>
-            <a href="ai-support.html" class="nav-link">
-                <span class="nav-icon">✳</span><span>AI Support</span><span class="nav-badge">AI</span>
-            </a>
-            <a href="wellness.html" class="nav-link">
-                <span class="nav-icon">♧</span><span>Daily Wellness</span>
-            </a>
-            <a href="session.html" class="nav-link">
-                <span class="nav-icon">♡</span><span>Sessions &amp; Support</span>
-            </a>
-            <a href="profile.html" class="nav-link">
-                <span class="nav-icon">♙</span><span>My Profile</span>
-            </a>
+                <nav class="sidebar-nav" aria-label="Main navigation">
+          <a href="dashbord.html" class="nav-link active" aria-current="page"><span class="nav-icon">&#8962;</span> Dashboard</a>
+          <a href="ai-support.html" class="nav-link"><span class="nav-icon">&#10047;</span> AI Support <span class="nav-badge">AI</span></a>
+          <a href="wellness.html" class="nav-link"><span class="nav-icon">&#9788;</span> Daily Wellness</a>
+          <a href="journal.html" class="nav-link"><span class="nav-icon">&#9998;</span> Daily Journal</a>
+          <a href="session.html" class="nav-link"><span class="nav-icon">&#9673;</span> Sessions &amp; Support</a>
+          <a href="profile.html" class="nav-link"><span class="nav-icon">&#9711;</span> My Profile</a>
         </nav>
 
         <div class="sidebar-bottom">
@@ -57,7 +49,7 @@
     <main class="main-content">
         <header class="topbar">
             <button type="button" class="menu-button" id="menu-button"
-                aria-label="Toggle navigation" aria-controls="sidebar" aria-expanded="false">☰</button>
+                aria-label="Toggle navigation" aria-controls="sidebar" aria-expanded="false">&#9776;</button>
 
             <div class="breadcrumb">
                 <span>Personal Space</span>
@@ -72,6 +64,17 @@
         </header>
 
         <div class="dashboard-container">
+
+            <section class="subscription-card" id="subscription-dashboard-summary" aria-label="Plan status" hidden>
+                <div><span class="section-kicker">YOUR PLAN · SIMULATED</span><h2 data-subscription-status>Free plan</h2><p data-subscription-description>Subscription details will appear here.</p></div>
+                <a href="profile.html#subscription" class="subscription-link">View plan details</a>
+            </section>
+            <section class="panel premium-preview-card" aria-labelledby="premium-preview-title">
+                <p class="section-kicker">PREMIUM FEATURE · PROTOTYPE PREVIEW</p>
+                <h2 id="premium-preview-title">Extended mood insights</h2>
+                <p data-premium-feature-copy>Basic mood tracking remains available on every plan. Advanced insights are a preview and are not currently computed.</p>
+                <a href="profile.html#subscription">View simulated Premium options</a>
+            </section>
 
             <section class="welcome-section">
                 <div class="welcome-copy">
@@ -241,6 +244,9 @@
 </div>
 
 <div class="sidebar-overlay" id="sidebar-overlay"></div>
+<script src="personal-access.js" defer></script>
+<script src="personal-sharing.js" defer></script>
+<script src="subscription.js" defer></script>
 <script src="dashbord.js" defer></script>
 </body>
 </html>

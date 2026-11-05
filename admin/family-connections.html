@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -20,6 +20,7 @@
         <a href="user-management.html" class="nav-link"><span class="nav-icon">♙</span><span>User Management</span></a>
         <a href="therapist-management.html" class="nav-link"><span class="nav-icon">✚</span><span>Therapist Management</span></a>
         <a href="family-connections.html" class="nav-link active" aria-current="page"><span class="nav-icon">♡</span><span>Family &amp; Connections</span></a>
+        <a href="safety-alerts.html" class="nav-link"><span class="nav-icon">!</span><span>Safety &amp; Alerts</span></a>
         <a href="sessions-consultations.html" class="nav-link"><span class="nav-icon">◷</span><span>Sessions &amp; Consultations</span></a>
         <a href="content-management.html" class="nav-link"><span class="nav-icon">▤</span><span>Content Management</span></a>
         <a href="reports-analytics.html" class="nav-link"><span class="nav-icon">⌁</span><span>Reports &amp; Analytics</span></a>
@@ -40,13 +41,14 @@
         <div class="topbar-actions"><span class="portal-badge"><span class="status-dot muted-dot"></span> Admin Portal · Demo</span></div>
       </header>
       <div class="portal-container"><section class="portal-view" id="connections" data-title="Family & Connections" aria-labelledby="connections-title">
-          <div class="page-heading"><div><p class="eyebrow">FAMILY LINKS &amp; CONSENT</p><h1 id="connections-title" tabindex="-1">Family &amp; Connections</h1><p class="page-description">Connection data and sharing permissions belong to the connected service and Personal User choices.</p></div></div>
+          <div class="page-heading"><div><p class="eyebrow">FAMILY LINKS &amp; CONSENT</p><h1 id="connections-title" tabindex="-1">Family &amp; Connections</h1><p class="page-description">Read the local demo request and consent state. Personal Users control acceptance and sharing choices.</p></div></div>
           <section class="privacy-banner"><span aria-hidden="true">♡</span><p><strong>Privacy boundary:</strong> Admin views do not grant access to private journals, private AI conversations, or data a Personal User has not explicitly shared.</p></section>
-          <section class="panel"><div class="panel-heading"><div><p class="eyebrow">CONNECTED ACCOUNTS</p><h2>Family connections</h2></div><span class="panel-icon">♡</span></div><div class="empty-state"><span class="empty-state-icon">○</span><h3>No connection records available</h3><p>No family links or connection requests are connected to this prototype.</p></div></section>
-          <section class="panel"><div class="panel-heading"><div><p class="eyebrow">SHARING PERMISSIONS</p><h2>Consent status</h2></div></div><div class="empty-state compact-empty"><h3>No consent records available</h3><p>Consent cannot be assumed, viewed, or changed from this disconnected demo.</p></div></section>
+          <section class="panel"><div class="panel-heading"><div><p class="eyebrow">CONNECTION RECORDS</p><h2>Family connection requests</h2></div></div><div class="admin-toolbar"><label class="form-field"><span class="field-label">Search account email</span><input id="family-connection-search" type="search" placeholder="Search family or Personal User email"></label><label class="form-field"><span class="field-label">Request status</span><select id="family-connection-filter"><option value="all">All statuses</option><option value="pending">Pending</option><option value="accepted">Accepted</option><option value="rejected">Rejected</option><option value="revoked">Revoked</option><option value="cancelled">Cancelled</option></select></label></div><p class="demo-note">Read-only local demo records. Personal Users control acceptance and sharing. No wellbeing summary, journal, or AI conversation content is available here.</p><div id="family-connection-records"></div></section>
+          <section class="panel"><div class="panel-heading"><div><p class="eyebrow">SHARING PERMISSIONS</p><h2>Consent status</h2></div></div><div id="family-consent-records"></div></section>
         </section></div>
     </main>
   </div>
+<script src="admin-access.js" defer></script>
 <script src="admin.js" defer></script>
 <script src="family-connections.js" defer></script>
 </body>

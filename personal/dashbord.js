@@ -174,6 +174,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const confirmed = window.confirm("Are you sure you want to log out?");
 
             if (confirmed) {
+                try { sessionStorage.removeItem("nafas.activeDemoAccount.v1"); } catch (error) {}
                 window.location.href = "../loginpage/login.html";
             }
         });
